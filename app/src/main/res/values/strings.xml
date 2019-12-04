@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyDB</string>
+    <string name="welcome_to_the_shipit_application">Welcome To The ShipIt application!</string>
 </resources>
