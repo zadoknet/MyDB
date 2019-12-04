@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/myBlue">
+
+
+    <TextView
+        android:id="@+id/mainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:text="@string/main_menu"
+        android:textFontWeight="20"
+        />
+
+    <Button
+        android:id="@+id/shipping_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SHIPPING ORDER" />
+
+    <Button
+        android:id="@+id/track_shipping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TRACK SHIPPING" />
+
+    <Button
+        android:id="@+id/my_orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MY ORDERS" />
+
+    <Button
+        android:id="@+id/become_a_carrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BECOME A CARRIER" />
+
+    <Button
+        android:id="@+id/warehouse_manager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WAREHOUSE MANAGER" />
+
+    <Button
+        android:id="@+id/carriers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CARRIERS" />
+
+    <Button
+        android:id="@+id/customer_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CUSTOMER REVIEWS" />
+</LinearLayout>
