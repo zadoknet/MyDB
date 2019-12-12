@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,12 @@ public class MainActivity extends AppCompatActivity {
             }
         },6000);
 
+      /*  View.OnClickListener buttonsListiner=new View.OnClickListener() {
+            @Override
+            public void onClick(View button) {
 
+            }
+        }*/
 
     }
 }

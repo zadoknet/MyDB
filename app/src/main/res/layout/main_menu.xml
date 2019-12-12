@@ -20,7 +20,9 @@
         android:id="@+id/shipping_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SHIPPING ORDER" />
+        android:text="SHIPPING ORDER"
+        android:onClick=""
+        />
 
     <Button
         android:id="@+id/track_shipping"

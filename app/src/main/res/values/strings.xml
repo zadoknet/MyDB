@@ -2,4 +2,5 @@
     <string name="app_name">MyDB</string>
     <string name="welcome_to_the_shipit_application">Welcome To The ShipIt application!</string>
     <string name="main_menu">Main Menu</string>
+    <string name="shipping_order">Shipping Order</string>
 </resources>
