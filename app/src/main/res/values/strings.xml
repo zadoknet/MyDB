@@ -3,4 +3,21 @@
     <string name="welcome_to_the_shipit_application">Welcome To The ShipIt application!</string>
     <string name="main_menu">Main Menu</string>
     <string name="shipping_order">Shipping Order</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="track_shipping">TRACK SHIPPING</string>
+    <string name="my_orders">MY ORDERS</string>
+    <string name="become_carrier">BECOME A CARRIER</string>
+    <string name="warehouse_manager">WAREHOUSE MANAGER</string>
+    <string name="carriers">CARRIERS</string>
+    <string name="customer_reviews">CUSTOMER REVIEWS</string>
+    <string name="warhouseManager">Warehouse Manager</string>
+    <string name="add_parcel">Add Parcel</string>
+    <string name="parcel_history">Parcel History</string>
 </resources>

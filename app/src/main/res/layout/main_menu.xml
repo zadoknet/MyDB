@@ -1,62 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/main_Menu"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/myBlue">
-
+    android:background="@color/myBlue"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/mainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#fff"
+        android:layout_gravity="center"
         android:text="@string/main_menu"
-        android:textFontWeight="20"
-        />
+        android:textColor="#fff"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/shipping_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SHIPPING ORDER"
-        android:onClick=""
-        />
+        android:text="@string/shipping_order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098"
+        tools:layout_editor_absoluteX="-16dp" />
 
     <Button
         android:id="@+id/track_shipping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TRACK SHIPPING" />
+        android:text="@string/track_shipping"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.196"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/my_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MY ORDERS" />
+        android:text="@string/my_orders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/become_a_carrier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BECOME A CARRIER" />
+        android:text="@string/become_carrier"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.392"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/warehouse_manager"
+        android:id="@+id/warehouseManager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="WAREHOUSE MANAGER" />
+        android:text="@string/warehouse_manager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/carriers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CARRIERS" />
+        android:text="@string/carriers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.579"
+        tools:layout_editor_absoluteX="-16dp" />
 
     <Button
         android:id="@+id/customer_reviews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CUSTOMER REVIEWS" />
-</LinearLayout>
+        android:text="@string/customer_reviews"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainMenu"
+        app:layout_constraintVertical_bias="0.669"
+        tools:layout_editor_absoluteX="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
