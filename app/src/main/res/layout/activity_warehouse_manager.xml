@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_parcel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_parcel"
@@ -32,7 +32,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/parcel_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/parcel_history"

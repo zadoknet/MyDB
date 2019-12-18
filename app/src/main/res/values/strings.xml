@@ -20,4 +20,8 @@
     <string name="warhouseManager">Warehouse Manager</string>
     <string name="add_parcel">Add Parcel</string>
     <string name="parcel_history">Parcel History</string>
+    <string name="select_parcel_type">Select Parcel Type</string>
+    <string name="parcel_contain_fragile_parts">Parcel Contain Fragile Parts ?</string>
+    <string name="select_parcel_type_Text">Select Parcel Type</string>
+
 </resources>

@@ -25,5 +25,14 @@ public class MainMenu extends Activity {
                 startActivity(buttonIntent);
             }
         });
+
+        Button  ShippingOrder=findViewById(R.id.shipping_order);
+        ShippingOrder.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent buttonIntent = new Intent(MainMenu.this, ShippingOrder.class);
+                startActivity(buttonIntent);
+            }
+        });
     }
 }
