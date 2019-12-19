@@ -17,11 +17,34 @@
     <string name="warehouse_manager">WAREHOUSE MANAGER</string>
     <string name="carriers">CARRIERS</string>
     <string name="customer_reviews">CUSTOMER REVIEWS</string>
-    <string name="warhouseManager">Warehouse Manager</string>
+    <string name="warehouseManager">Warehouse Manager</string>
     <string name="add_parcel">Add Parcel</string>
     <string name="parcel_history">Parcel History</string>
     <string name="select_parcel_type">Select Parcel Type</string>
     <string name="parcel_contain_fragile_parts">Parcel Contain Fragile Parts ?</string>
     <string name="select_parcel_type_Text">Select Parcel Type</string>
+    <string name="select_weight">Select Weight</string>
+    <string-array name="parcelTypeArr">
+        <item>Envelope</item>
+        <item>Small Package</item>
+        <item>Large Package</item>
+    </string-array>
+    <string-array name="fragileContentArr">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="weight">
+        <item>Up To 500 Gram</item>
+        <item>Up To 1 Kilogram</item>
+        <item>Up To 5 Kilogram</item>
+        <item>Up To 20 Kilogram</item>
+    </string-array>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="x">X</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_last_name">Enter last name</string>
+    <string name="insert">Insert</string>
+    <string name="name_inserting">name_inserting</string>
 
 </resources>

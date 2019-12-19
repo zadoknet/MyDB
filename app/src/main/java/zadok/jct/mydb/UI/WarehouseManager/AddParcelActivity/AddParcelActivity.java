@@ -1,6 +1,7 @@
 package zadok.jct.mydb.UI.WarehouseManager.AddParcelActivity;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,8 +14,7 @@ import zadok.jct.mydb.R;
 
 public class AddParcelActivity extends AppCompatActivity {
 
-   private String[] parcelTypeArr = {"Envelope", "Small Package", "Large Package"};
-    private String[] fragileContentArr={"Yes","No"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,9 @@ public class AddParcelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_parcell);
 
 
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, parcelTypeArr);
+        Resources resParcelType=getResources();
+        String[] parcelType=resParcelType.getStringArray(R.array.parcelTypeArr);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,parcelType);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner type = findViewById(R.id.parcel_type);
         type.setAdapter(typeAdapter);
@@ -41,7 +43,9 @@ public class AddParcelActivity extends AppCompatActivity {
         });
 
 
-        ArrayAdapter<String> fragile = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fragileContentArr);
+        Resources resFragileType=getResources();
+        String[] fragileType=resFragileType.getStringArray(R.array.fragileContentArr);
+        ArrayAdapter<String> fragile = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fragileType);
         fragile.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner isFragile= findViewById(R.id.fragile_content);
         isFragile.setAdapter(fragile);
@@ -59,6 +63,26 @@ public class AddParcelActivity extends AppCompatActivity {
                 }
         });
 
+        Resources resWeight=getResources();
+        String[] weightType=resWeight.getStringArray(R.array.weight);
+        ArrayAdapter<String> weight = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, weightType);
+        weight.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner setWeight= findViewById(R.id.weight);
+        setWeight.setAdapter(weight);
+        setWeight.setPrompt("Set Weight");
+        setWeight.setSelection(0);
+        setWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+
 
 }
