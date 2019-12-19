@@ -1,5 +1,5 @@
 package zadok.jct.mydb.Data;
 
-public class ParcelDataSource {
-    //TODO
-}
+
+public class ParcelDataSource  {
+ }
