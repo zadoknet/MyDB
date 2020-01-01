@@ -1,26 +1,37 @@
 package zadok.jct.mydb.ViewModels;
 
+import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 
 import zadok.jct.mydb.Data.ParcelRepository;
 import zadok.jct.mydb.Entitties.Parcel;
-import zadok.jct.mydb.Utils.postStatus;
+import zadok.jct.mydb.Utils.PostStatus;
 
-public class ParcelViewModel extends ViewModel {
-ParcelRepository repository=new ParcelRepository();
+public class ParcelViewModel extends AndroidViewModel {
 
-public MutableLiveData<postStatus> getStatusMessageViewModel(){
-    return repository.getStatusMessageRepository();
+
+    ParcelRepository rp;
+    Context r = getApplication();
+final String TAG="ZADOK";
+    public ParcelViewModel(@NonNull Application application) {
+        super(application);
+        rp=new ParcelRepository(r);
+    }
+
+
+    public MutableLiveData<PostStatus> getStatusMessageViewModel(){
+    return rp.getStatusMessageRepository();
 }
 
 public void addParcelToRepository(Parcel parcel)
 {
-    repository.addParcelToDBManger(parcel);
+    Log.i(TAG,"addParcel to addParcelToRepository");
+    rp.addParcelToDBManger(parcel);
 }
 
     //TODO:

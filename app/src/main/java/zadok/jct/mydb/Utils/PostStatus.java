@@ -1,6 +1,6 @@
 package zadok.jct.mydb.Utils;
 
-public class postStatus {
+public class PostStatus {
     public enum savingStatus {NOT_DEFINE,SUCCESS,FAILED}
     private savingStatus status;
 
@@ -11,7 +11,7 @@ public class postStatus {
     public void setStatus(savingStatus status) {
         this.status = status;
     }
-    public postStatus(savingStatus _status)
+    public PostStatus(savingStatus _status)
     {
         status=_status;
     }

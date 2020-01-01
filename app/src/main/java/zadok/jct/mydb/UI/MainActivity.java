@@ -1,20 +1,24 @@
 package zadok.jct.mydb.UI;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import zadok.jct.mydb.R;
 
 
-
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_main);
         TextView welcomeView = findViewById(R.id.welcomeView);
         welcomeView.setTextSize((float) 20.0);
@@ -27,7 +31,7 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(MainActivity.this,MainMenu.class);
                 startActivity(i);
                 TextView mainMenuView = findViewById(R.id.mainMenu);
-                mainMenuView.setTextSize((float) 25);
+//                mainMenuView.setTextSize((float) 25);
             }
         }, 100);
 

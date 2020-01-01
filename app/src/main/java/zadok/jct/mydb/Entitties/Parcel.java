@@ -2,29 +2,60 @@ package zadok.jct.mydb.Entitties;
 
 import android.location.Location;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.firebase.database.Exclude;
 
 import java.util.Date;
 
-
+@Entity(tableName = "parcels_table")
 public class Parcel {
+    @Override
+    public String toString() {
+        return "Parcel{" +
+                "parcelId=" + parcelId +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     static int currentIdIndex;
 
-    int parcelId;
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int parcelId;
+
     public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE;};
+
+
     private parcelType type;
     private Boolean isFragile;
     public enum parcelWeight{HALF_KG,KG,FIVE_KG,TWENTY_KG;}
+
+    @Ignore
     private parcelWeight weight;
+
+    @Ignore
     private Location location;
+
     private String name;
+
+    @Ignore
     private Location address;
+
+    @Ignore
     private Date date; //*****I need to check this
+
     private String phoneNumber;
+
     private String mail;
     public enum parcelStatus{SENT,ACCETED_TAKING_OFFER,ON_THE_WAY,ACCEPTED;}
+
+    @Ignore
     private parcelStatus status;
+
     private String messengerName;
 
     public static int getCurrentIdIndex() {
@@ -35,12 +66,12 @@ public class Parcel {
         Parcel.currentIdIndex = currentIdIndex;
     }
 
-    @Exclude
+    @Exclude @NonNull
     public int getParcelId() {
         return parcelId;
     }
 
-    public void setParcelId(int parcelId) {
+    public void setParcelId(@NonNull int parcelId) {
         this.parcelId = parcelId;
     }
 
@@ -137,6 +168,15 @@ public class Parcel {
         this.status = status;
         this.messengerName = messengerName;
     }
+
+    public Parcel(int parcelId,String _name)
+    {
+        this.parcelId=parcelId;
+        name=_name;
+    }
+
+    public Parcel()
+    {}
 }
 
 
