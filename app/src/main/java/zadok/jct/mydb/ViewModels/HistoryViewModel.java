@@ -12,14 +12,14 @@ import java.util.List;
 import zadok.jct.mydb.Data.ParcelRepository;
 import zadok.jct.mydb.Entitties.Parcel;
 
-public class HidtoryViewModel extends AndroidViewModel {
+public class HistoryViewModel extends AndroidViewModel {
     ParcelRepository rp;
     Context r = getApplication();
     final String TAG="ZADOK";
 
 
 
-    public HidtoryViewModel(@NonNull Application application) {
+    public HistoryViewModel(@NonNull Application application) {
         super(application);
         rp=new ParcelRepository(r);
     }
