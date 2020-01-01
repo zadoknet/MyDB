@@ -26,7 +26,7 @@ public class Firebase_DBManger {
     final String TAG = "ZADOK";
     private static ChildEventListener parcelRefChildEventListener;
 
-    public static void notifyToChildList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
+    public static void notifyToChildList(final NotifyDataChange<Parcel> notifyDataChange) {
         if (notifyDataChange != null)
             notifyDataChange.onFailure(new Exception("first unNotify parcel list"));
         parcelsList.clear();
@@ -38,9 +38,9 @@ public class Firebase_DBManger {
 
                 String id=dataSnapshot.getKey();
                 parcel.setParcelId(Integer.parseInt(id));
-                //todo: if (filter[sent+owned to this machsan
 
-                notifyDataChange.onDataChanged(parcelsList);
+                //todo: if (filter[sent+owned to this machsan]
+                notifyDataChange.onDataChanged(parcel);
             }
 
             @Override
@@ -50,14 +50,8 @@ public class Firebase_DBManger {
                 int id=Integer.parseInt(dataSnapshot.getKey());
                 parcel.setParcelId(id);
 
-                for(int i=0;i<parcelsList.size();i++)
-                {
-                    if(parcelsList.get(i).getParcelId()==id)
-                    {parcelsList.set(i,parcel);
-                        break;}
-                }
-
-                notifyDataChange.onDataChanged(parcelsList);
+                //todo:  if (filter[sent+owned to this machsan]
+                notifyDataChange.onDataChanged(parcel);
             }
 
             @Override
@@ -126,4 +120,5 @@ public class Firebase_DBManger {
     public MutableLiveData<PostStatus> getStatusMessage() {
         return statusMessage;
     }
+
 }

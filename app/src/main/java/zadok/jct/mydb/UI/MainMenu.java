@@ -11,9 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import java.util.List;
-
-import zadok.jct.mydb.Data.Firebase_DBManger;
 import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
 import zadok.jct.mydb.UI.WarehouseManager.warehouseManager;
@@ -43,17 +40,7 @@ public class MainMenu extends AppCompatActivity {
 
 
 
-        Firebase_DBManger.notifyToChildList(new Firebase_DBManger.NotifyDataChange<List<Parcel>>() {
-            @Override
-            public void onDataChanged(List<Parcel> parcels) {
-                Log.i(TAG,"this notify came to main menu"+parcels.toString());
-            }
 
-            @Override
-            public void onFailure(Exception exception) {
-
-            }
-        });
 
         Button wareHouseManager = findViewById(R.id.warehouseManager);
         wareHouseManager.setOnClickListener(new OnClickListener() {

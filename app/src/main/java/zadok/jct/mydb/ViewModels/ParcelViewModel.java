@@ -15,6 +15,7 @@ import zadok.jct.mydb.Utils.PostStatus;
 public class ParcelViewModel extends AndroidViewModel {
 
 
+
     ParcelRepository rp;
     Context r = getApplication();
 final String TAG="ZADOK";
