@@ -31,6 +31,6 @@ public class HistoryParcelActivity extends AppCompatActivity {
                 Log.i(TAG, "This is parcel from the room" + parcels.toString());
             }
         });
-        //historyViewModel.getDataFromRoom();
+        historyViewModel.getDataFromRoom();
     }
 }
