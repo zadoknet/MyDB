@@ -25,17 +25,24 @@ public class ParcelRepository extends Application {
                 .allowMainThreadQueries()
                 .build();
         final ParcelsDao parcelsDao = database.getParcelsDao();
-        Parcel parcel1 = new Parcel(4, "נתנאל");
-        Parcel parcel2 = new Parcel(5, "צדוק");
-        Parcel parcel3=new Parcel(6,"שרה");
+        //Parcel parcel1 = new Parcel(4, "נתנאל");
+        //Parcel parcel2 = new Parcel(5, "צדוק");
+        //Parcel parcel3=new Parcel(6,"שרה");
         //database.getParcelsDao().Insert(parcel1,parcel2,parcel3);
-        ParcelsDao parcelsDao1=database.getParcelsDao();
-        parcelsDao.Insert(parcel1, parcel2,parcel3);
+        //ParcelsDao parcelsDao1=database.getParcelsDao();
+        //parcelsDao.Insert(parcel1, parcel2,parcel3);
        List<Parcel> parcels = database.getParcelsDao().getItems();
         Log.i(TAG, "" + parcels);
         fire.notifyToChildList(new Firebase_DBManger.NotifyDataChange<Parcel>() {
             @Override
             public void onDataChanged(Parcel parcel) {
+
+                Parcel temp=parcelsDao.getItemById(Long.parseLong(""+parcel.getParcelId()));
+                if(temp!=null)
+                    //if the item exist in the sqlite- update
+                    parcelsDao.Update(temp);
+                else
+                    //if the item didn't exist in the sqlite- insert
                 parcelsDao.Insert(parcel);
                 //take the Parcels from the room and post the to the observer(the HistoryViewModel)
                 parcelsLiveData.postValue(parcelsDao.getItems());
@@ -68,6 +75,10 @@ public class ParcelRepository extends Application {
     public MutableLiveData<List<Parcel>> getParcelsLiveData()
     {
         return parcelsLiveData;
+    }
+
+    public void getDataFromRoom() {
+        parcelsLiveData.postValue(parcelsDao.getItems());
     }
 }
 

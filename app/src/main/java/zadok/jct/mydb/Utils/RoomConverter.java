@@ -19,8 +19,8 @@ public class RoomConverter {
                 return null;
         }
     }
-    @TypeConverter
-    public static String fromParcelType(Parcel.parcelType parcelType)
+    //@TypeConverter
+    //public static String fromParcelType(Parcel.parcelType parcelType)
 //public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE};
 
 }

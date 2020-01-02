@@ -30,6 +30,7 @@ public class Parcel {
     public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE;};
 
 
+    @Ignore
     private parcelType type;
     private Boolean isFragile;
     public enum parcelWeight{HALF_KG,KG,FIVE_KG,TWENTY_KG;}

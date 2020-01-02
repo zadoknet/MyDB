@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
+import zadok.jct.mydb.UI.WarehouseManager.HistoryParcelActivity.HistoryParcelActivity;
 import zadok.jct.mydb.UI.WarehouseManager.warehouseManager;
 import zadok.jct.mydb.Utils.PostStatus;
 import zadok.jct.mydb.ViewModels.ParcelViewModel;
@@ -57,6 +58,15 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent buttonIntent = new Intent(MainMenu.this, ShippingOrder.class);
                 startActivity(buttonIntent);
+            }
+        });
+
+        final Button HistoryParcel=findViewById(R.id.track_shipping);
+        HistoryParcel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent buttoIntent=new Intent(MainMenu.this, HistoryParcelActivity.class);
+                startActivity(buttoIntent);
             }
         });
 

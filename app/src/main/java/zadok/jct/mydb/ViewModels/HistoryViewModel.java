@@ -27,4 +27,8 @@ public class HistoryViewModel extends AndroidViewModel {
     {
         return rp.getParcelsLiveData();
     }
+
+    public void getDataFromRoom() {
+        rp.getDataFromRoom();
+    }
 }
