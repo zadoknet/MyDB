@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 
 import com.google.firebase.database.Exclude;
 
-import java.util.Date;
+import java.util.Calendar;
 
 @Entity(tableName = "parcels_table")
 public class Parcel {
@@ -48,7 +48,7 @@ public class Parcel {
     private Location address;
 
     @Ignore
-    private Date date; //*****I need to check this
+    private Calendar cameToInhibitorTime; //*****I need to check this
 
     private String phoneNumber;
 
@@ -117,12 +117,12 @@ public class Parcel {
         this.address = address;
     }
 
-    public Date getDate() {
-        return date;
+    public Calendar getCameToInhibitorTime() {
+        return cameToInhibitorTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCameToInhibitorTime(Calendar calendar) {
+        this.cameToInhibitorTime = cameToInhibitorTime;
     }
 
     public String getPhoneNumber() {
@@ -169,6 +169,8 @@ public class Parcel {
         this.mail = mail;
         this.status = status;
         this.messengerName = messengerName;
+
+
     }
 
     public Parcel(int parcelId,String _name)
