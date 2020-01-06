@@ -32,5 +32,6 @@ public class HistoryParcelActivity extends AppCompatActivity {
             }
         });
         historyViewModel.getDataFromRoom();
+        Log.i(TAG,"pass good");
     }
 }

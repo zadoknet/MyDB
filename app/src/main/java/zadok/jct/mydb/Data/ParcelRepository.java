@@ -24,13 +24,7 @@ public class ParcelRepository extends Application {
         database = Room.databaseBuilder(app, HistoryDataSource.class, "mydb")
                 .allowMainThreadQueries()
                 .build();
-        final ParcelsDao parcelsDao = database.getParcelsDao();
-        //Parcel parcel1 = new Parcel(4, "נתנאל");
-        //Parcel parcel2 = new Parcel(5, "צדוק");
-        //Parcel parcel3=new Parcel(6,"שרה");
-        //database.getParcelsDao().Insert(parcel1,parcel2,parcel3);
-        //ParcelsDao parcelsDao1=database.getParcelsDao();
-        //parcelsDao.Insert(parcel1, parcel2,parcel3);
+        parcelsDao = database.getParcelsDao();
        List<Parcel> parcels = database.getParcelsDao().getItems();
         Log.i(TAG, "" + parcels);
         fire.notifyToChildList(new Firebase_DBManger.NotifyDataChange<Parcel>() {

@@ -30,13 +30,14 @@ public class Parcel {
     public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE;};
 
 
-    @Ignore
+
     private parcelType type;
     private Boolean isFragile;
-    public enum parcelWeight{HALF_KG,KG,FIVE_KG,TWENTY_KG;}
+    public enum ParcelWeight {HALF_KG,KG,FIVE_KG,TWENTY_KG;}
 
-    @Ignore
-    private parcelWeight weight;
+    private ParcelWeight weight;
+
+
 
     @Ignore
     private Location location;
@@ -92,11 +93,11 @@ public class Parcel {
         isFragile = fragile;
     }
 
-    public parcelWeight getWeight() {
+    public ParcelWeight getWeight() {
         return weight;
     }
 
-    public void setWeight(parcelWeight weight) {
+    public void setWeight(ParcelWeight weight) {
         this.weight = weight;
     }
 
@@ -157,7 +158,7 @@ public class Parcel {
     }
 
     //TODO: this constuctor is temporary for testing
-    public Parcel(int parcelId, parcelType type, Boolean isFragile, parcelWeight weight, String name, String phoneNumber, String mail, parcelStatus status, String messengerName) {
+    public Parcel(int parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, parcelStatus status, String messengerName) {
         this.parcelId = parcelId;
         this.type = type;
         this.isFragile = isFragile;
