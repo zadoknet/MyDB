@@ -3,30 +3,46 @@ package zadok.jct.mydb.Utils;
 import android.location.Location;
 
 public class MyLocation{
-    private Location lo;
+
+    double lat;
+    double lng;
 
     public MyLocation(){}
 
     public MyLocation(MyLocation location)
     {
-        lo=location.getLo();
+        lat=location.getLat();
+        lng=location.getLng();
     }
     public MyLocation(Location location)
     {
-        lo=location;
-    }
-    public Location getLo() {
-        return lo;
+        lat=location.getLatitude();
+        lng=location.getLongitude();
     }
 
-    public MyLocation(double lat,double lng)
+
+    public MyLocation(double _lat,double _lng)
     {
-        lo.setLatitude(lat);
-        lo.setLongitude(lng);
-    }
-    public void setLo(Location lo) {
-        this.lo = lo;
+        lat=_lat;
+        lng=_lng;
     }
 
+    //*****GETTER/ SETTERS*****************8
 
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 }

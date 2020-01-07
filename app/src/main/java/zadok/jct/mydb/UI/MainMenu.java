@@ -1,6 +1,8 @@
 package zadok.jct.mydb.UI;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.util.List;
+import java.util.Locale;
+
 import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
 import zadok.jct.mydb.UI.WarehouseManager.HistoryParcelActivity.HistoryParcelActivity;
 import zadok.jct.mydb.UI.WarehouseManager.warehouseManager;
+import zadok.jct.mydb.Utils.MyLocation;
 import zadok.jct.mydb.Utils.PostStatus;
 import zadok.jct.mydb.ViewModels.ParcelViewModel;
 
@@ -36,8 +42,10 @@ public class MainMenu extends AppCompatActivity {
                     Log.i(TAG,"saving failed ViewModel");
             }
         });
-        viewModel.addParcelToRepository(new Parcel(2344233,"zadok"));
-        viewModel.addParcelToRepository(new Parcel(23,"zadok1"));
+        MyLocation location1=new MyLocation(getLocationFromAddress("אביעד 4 ירושלים ישראל"));
+        MyLocation location2=new MyLocation(getLocationFromAddress("נחל ניצנים בית שמש ישראל"));
+        viewModel.addParcelToRepository(new Parcel(1,"zadok",location1));
+        viewModel.addParcelToRepository(new Parcel(2,"zadok1",location2));
 
 
 
@@ -71,5 +79,25 @@ public class MainMenu extends AppCompatActivity {
         });
 
 
+    }
+    //todo: delete this function (getLccationFromAddress)
+    public MyLocation getLocationFromAddress(String strAddress) {
+
+        //    Geocoder coder = new Geocoder(this);
+        Geocoder coder = new Geocoder(this,  new Locale("he"));
+        List<Address> address;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 1);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            double lat = location.getLatitude();
+            double lng = location.getLongitude();
+            return new MyLocation(lat,lng);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -70,13 +70,14 @@ public class RoomConverter {
     }
 
     //****for ParcelStatus*****************************************************
+    @TypeConverter
     public static Parcel.ParcelStatus toParcelStatus(String parcelStatus)
     {
         if(parcelStatus.length()==0)
             return null;
         return Parcel.ParcelStatus.valueOf(parcelStatus);
     }
-
+    @TypeConverter
     public static String fromStatusToString(Parcel.ParcelStatus parcelStatus){
         if(parcelStatus==null)
             return "";
@@ -84,12 +85,18 @@ public class RoomConverter {
     }
 
     //*****for MyLocation*******************************************8
-    public static String MyLcationToString(MyLocation myLocation)
+    @TypeConverter
+    public static String fromMyLcationToString(MyLocation myLocation)
     {
-        return myLocation.getLo().getLatitude()+","+myLocation.getLo().getLongitude();
+        if (myLocation==null)
+            return "";
+        return myLocation.getLat()+","+myLocation.getLng();
     }
-    public static MyLocation stringToMyLocation(String location)
+    @TypeConverter
+    public static MyLocation ToMyLocation(String location)
     {
+        if (location.length()==0)
+            return null;
         //convert the location to arrray
         // the first element is Latitude
         //the second element is longitude

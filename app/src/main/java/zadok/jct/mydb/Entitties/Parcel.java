@@ -44,14 +44,15 @@ public class Parcel {
 
 
 
-    @Ignore
-    private MyLocation targetLocation;
+
+
 
     private String name;
 
     @Ignore
     private MyLocation inhibitorAddress;
 
+    private MyLocation targetLocation;
 
     private Date cameToInhibitorTime; //*****I need to check this
 
@@ -117,15 +118,21 @@ public class Parcel {
     public MyLocation getInhibitorAddress() {
         return inhibitorAddress;
     }
-
     public void setInhibitorAddress(MyLocation inhibitorAddress) {
         this.inhibitorAddress = inhibitorAddress;
+    }
+
+    public MyLocation getTargetLocation() {
+        return targetLocation;
+    }
+
+    public void setTargetLocation(MyLocation _targetLocation) {
+        this.targetLocation = _targetLocation;
     }
 
     public Date getCameToInhibitorTime() {
         return cameToInhibitorTime;
     }
-
     public void setCameToInhibitorTime(Date cameToInhibitorTime) {
         this.cameToInhibitorTime = cameToInhibitorTime;
     }
@@ -133,7 +140,6 @@ public class Parcel {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -141,7 +147,6 @@ public class Parcel {
     public String getMail() {
         return mail;
     }
-
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -149,7 +154,6 @@ public class Parcel {
     public ParcelStatus getStatus() {
         return status;
     }
-
     public void setStatus(ParcelStatus status) {
         this.status = status;
     }
@@ -157,7 +161,6 @@ public class Parcel {
     public String getMessengerName() {
         return messengerName;
     }
-
     public void setMessengerName(String messengerName) {
         this.messengerName = messengerName;
     }
@@ -195,6 +198,18 @@ public class Parcel {
         this.parcelId=parcelId;
         name=_name;
     }
+
+    public Parcel(int parcelId,String _name,MyLocation myLocation)
+    {
+        cameToInhibitorTime=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Log.i(TAG,formatter.format(cameToInhibitorTime));
+
+        targetLocation=myLocation;
+        this.parcelId=parcelId;
+        name=_name;
+    }
+
 
     public Parcel()
     {}
