@@ -1,6 +1,7 @@
 package zadok.jct.mydb.Entitties;
 
 import android.location.Location;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -9,10 +10,13 @@ import androidx.room.PrimaryKey;
 
 import com.google.firebase.database.Exclude;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity(tableName = "parcels_table")
 public class Parcel {
+    private static final String TAG ="ZADOK" ;
+
     @Override
     public String toString() {
         return "Parcel{" +
@@ -47,16 +51,16 @@ public class Parcel {
     @Ignore
     private Location address;
 
-    @Ignore
-    private Calendar cameToInhibitorTime; //*****I need to check this
+
+    private Date cameToInhibitorTime; //*****I need to check this
 
     private String phoneNumber;
 
     private String mail;
-    public enum parcelStatus{SENT,ACCETED_TAKING_OFFER,ON_THE_WAY,ACCEPTED;}
+    public enum ParcelStatus {SENT,ACCETED_TAKING_OFFER,ON_THE_WAY,ACCEPTED;}
 
     @Ignore
-    private parcelStatus status;
+    private ParcelStatus status;
 
     private String messengerName;
 
@@ -117,11 +121,11 @@ public class Parcel {
         this.address = address;
     }
 
-    public Calendar getCameToInhibitorTime() {
+    public Date getCameToInhibitorTime() {
         return cameToInhibitorTime;
     }
 
-    public void setCameToInhibitorTime(Calendar calendar) {
+    public void setCameToInhibitorTime(Date date) {
         this.cameToInhibitorTime = cameToInhibitorTime;
     }
 
@@ -141,11 +145,11 @@ public class Parcel {
         this.mail = mail;
     }
 
-    public parcelStatus getStatus() {
+    public ParcelStatus getStatus() {
         return status;
     }
 
-    public void setStatus(parcelStatus status) {
+    public void setStatus(ParcelStatus status) {
         this.status = status;
     }
 
@@ -157,8 +161,14 @@ public class Parcel {
         this.messengerName = messengerName;
     }
 
+
     //TODO: this constuctor is temporary for testing
-    public Parcel(int parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, parcelStatus status, String messengerName) {
+    public Parcel(int parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
+        //todo: copy this to the main constructor
+        Date date=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Log.i(TAG,formatter.format(date));
+
         this.parcelId = parcelId;
         this.type = type;
         this.isFragile = isFragile;
@@ -173,8 +183,14 @@ public class Parcel {
 
     }
 
+
+
     public Parcel(int parcelId,String _name)
     {
+        cameToInhibitorTime=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Log.i(TAG,formatter.format(cameToInhibitorTime));
+
         this.parcelId=parcelId;
         name=_name;
     }
