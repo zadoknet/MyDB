@@ -2,6 +2,8 @@ package zadok.jct.mydb.Utils;
 
 import androidx.room.TypeConverter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import zadok.jct.mydb.Entitties.Parcel;
@@ -81,4 +83,19 @@ public class RoomConverter {
         return parcelStatus.name();
     }
 
+    //*****for MyLocation*******************************************8
+    public static String MyLcationToString(MyLocation myLocation)
+    {
+        return myLocation.getLo().getLatitude()+","+myLocation.getLo().getLongitude();
+    }
+    public static MyLocation stringToMyLocation(String location)
+    {
+        //convert the location to arrray
+        // the first element is Latitude
+        //the second element is longitude
+        ArrayList<String> tmp=new ArrayList<>(Arrays.asList(location.split(",")));
+        Double lat=Double.parseDouble(tmp.get(0));
+        Double lng=Double.parseDouble(tmp.get(1));
+        return new MyLocation(lat,lng);
+    }
 }

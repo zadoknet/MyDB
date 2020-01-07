@@ -1,6 +1,5 @@
 package zadok.jct.mydb.Entitties;
 
-import android.location.Location;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -12,6 +11,8 @@ import com.google.firebase.database.Exclude;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import zadok.jct.mydb.Utils.MyLocation;
 
 @Entity(tableName = "parcels_table")
 public class Parcel {
@@ -44,12 +45,12 @@ public class Parcel {
 
 
     @Ignore
-    private Location location;
+    private MyLocation targetLocation;
 
     private String name;
 
     @Ignore
-    private Location address;
+    private MyLocation inhibitorAddress;
 
 
     private Date cameToInhibitorTime; //*****I need to check this
@@ -113,12 +114,12 @@ public class Parcel {
         this.name = name;
     }
 
-    public Location getAddress() {
-        return address;
+    public MyLocation getInhibitorAddress() {
+        return inhibitorAddress;
     }
 
-    public void setAddress(Location address) {
-        this.address = address;
+    public void setInhibitorAddress(MyLocation inhibitorAddress) {
+        this.inhibitorAddress = inhibitorAddress;
     }
 
     public Date getCameToInhibitorTime() {

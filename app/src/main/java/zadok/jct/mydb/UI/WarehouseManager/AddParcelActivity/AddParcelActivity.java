@@ -1,7 +1,9 @@
 package zadok.jct.mydb.UI.WarehouseManager.AddParcelActivity;
 
-import android.app.Activity;
 import android.content.res.Resources;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
+import java.util.Locale;
 
 import zadok.jct.mydb.R;
 
@@ -85,4 +90,26 @@ public class AddParcelActivity extends AppCompatActivity {
     }
 
 
+    public Location getLocationFromAddress(String strAddress) {
+
+        //    Geocoder coder = new Geocoder(this);
+        Geocoder coder = new Geocoder(this,  new Locale("he"));
+        List<Address> address;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 1);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            double lat = location.getLatitude();
+            double lng = location.getLongitude();
+            Location result=new Location("zadok");
+            result.setLatitude(lat);
+            result.setLongitude(lng);
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
