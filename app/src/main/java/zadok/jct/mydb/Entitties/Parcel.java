@@ -125,7 +125,7 @@ public class Parcel {
         return cameToInhibitorTime;
     }
 
-    public void setCameToInhibitorTime(Date date) {
+    public void setCameToInhibitorTime(Date cameToInhibitorTime) {
         this.cameToInhibitorTime = cameToInhibitorTime;
     }
 
@@ -165,9 +165,9 @@ public class Parcel {
     //TODO: this constuctor is temporary for testing
     public Parcel(int parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
         //todo: copy this to the main constructor
-        Date date=new Date();
+        Date cameToInhibitorTime=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Log.i(TAG,formatter.format(date));
+        Log.i(TAG,formatter.format(cameToInhibitorTime));
 
         this.parcelId = parcelId;
         this.type = type;

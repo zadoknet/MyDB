@@ -34,7 +34,7 @@ public class ParcelRepository extends Application {
                 Parcel temp=parcelsDao.getItemById(Long.parseLong(""+parcel.getParcelId()));
                 if(temp!=null)
                     //if the item exist in the sqlite- update
-                    parcelsDao.Update(temp);
+                    parcelsDao.Update(parcel);
                 else
                     //if the item didn't exist in the sqlite- insert
                 parcelsDao.Insert(parcel);
