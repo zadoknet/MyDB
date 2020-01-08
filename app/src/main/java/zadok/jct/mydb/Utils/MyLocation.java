@@ -1,7 +1,35 @@
 package zadok.jct.mydb.Utils;
 
 import android.location.Location;
+public class MyLocation extends Location
+{
+    public MyLocation(){super("");}
 
+    public MyLocation(double _lat,double _lng)
+    {
+        super("");
+        this.setLatitude(_lat);
+        this.setLongitude(_lng);
+    }
+
+   // *****GETTERS/SETTERS********************************
+    public double getLat() {
+        return this.getLatitude();
+    }
+
+    public void setLat(double lat) {
+        this.setLatitude(lat);
+    }
+
+    public double getLng() {
+        return this.getLongitude();
+    }
+
+    public void setLng(double lng) {
+        this.setLongitude(lng);
+    }
+}
+/*
 public class MyLocation{
 
     double lat;
@@ -46,3 +74,5 @@ public class MyLocation{
         this.lng = lng;
     }
 }
+
+ */

@@ -42,8 +42,8 @@ public class MainMenu extends AppCompatActivity {
                     Log.i(TAG,"saving failed ViewModel");
             }
         });
-        MyLocation location1=new MyLocation(getLocationFromAddress("אביעד 4 ירושלים ישראל"));
-        MyLocation location2=new MyLocation(getLocationFromAddress("נחל ניצנים בית שמש ישראל"));
+        MyLocation location1=getLocationFromAddress("אביעד 4 ירושלים ישראל");
+        MyLocation location2=getLocationFromAddress("נחל ניצנים בית שמש ישראל");
         viewModel.addParcelToRepository(new Parcel(1,"zadok",location1));
         viewModel.addParcelToRepository(new Parcel(2,"zadok1",location2));
 

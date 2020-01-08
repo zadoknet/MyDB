@@ -21,7 +21,7 @@ import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.Utils.PostStatus;
 
 
-public class Firebase_DBManger {
+public class ParcelDateSource {
 
     final String TAG = "ZADOK";
     private static ChildEventListener parcelRefChildEventListener;
