@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -37,7 +38,10 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onChanged(PostStatus postStatus) {
                 if(postStatus.getStatus()==PostStatus.savingStatus.SUCCESS)
-                    Log.i(TAG,"saving success ViewModel");
+                {
+                    Toast toast=Toast.makeText(getApplicationContext(),"saving sucess",Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.i(TAG,"saving success ViewModel");}
                 else if(postStatus.getStatus()==PostStatus.savingStatus.FAILED)
                     Log.i(TAG,"saving failed ViewModel");
             }

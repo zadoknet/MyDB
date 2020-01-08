@@ -18,7 +18,7 @@ public class ParcelRepository extends Application {
     HistoryDataSource database;
     private ParcelsDao parcelsDao;
     private MutableLiveData<List<Parcel>> parcelsLiveData=new MutableLiveData<>();
-    ParcelDateSource fire = new ParcelDateSource();
+    ParcelDataSource fire = new ParcelDataSource();
 
     public ParcelRepository(Context app) {
         database = Room.databaseBuilder(app, HistoryDataSource.class, "mydb")
@@ -27,7 +27,7 @@ public class ParcelRepository extends Application {
         parcelsDao = database.getParcelsDao();
        List<Parcel> parcels = database.getParcelsDao().getItems();
         Log.i(TAG, "" + parcels);
-        fire.notifyToChildList(new ParcelDateSource.NotifyDataChange<Parcel>() {
+        fire.notifyToChildList(new ParcelDataSource.NotifyDataChange<Parcel>() {
             @Override
             public void onDataChanged(Parcel parcel) {
 
