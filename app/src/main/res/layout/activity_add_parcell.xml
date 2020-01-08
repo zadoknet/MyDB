@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_parcel"
-        android:textColor="@color/myBlue"
+
+        android:textColor="#0D0D0F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,16 +96,26 @@
         app:layout_constraintVertical_bias="0.318" />
 
     <Button
-        android:id="@+id/name_insert"
-        android:layout_width="wrap_content"
+        android:id="@+id/delivery_details"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/name_inserting"
+        android:text="@string/delivery_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.387" />
+
+    <Button
+        android:id="@id/recipient_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recipient_address"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.469"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

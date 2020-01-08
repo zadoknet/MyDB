@@ -1,5 +1,6 @@
 package zadok.jct.mydb.UI.WarehouseManager.AddParcelActivity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 import java.util.Locale;
 
+import zadok.jct.mydb.DeliveryDetails;
 import zadok.jct.mydb.R;
 
 public class AddParcelActivity extends AppCompatActivity {
@@ -85,6 +88,18 @@ public class AddParcelActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        /**
+         *
+         */
+        Button DeliveryDetailsBtn=findViewById(R.id.delivery_details);
+        DeliveryDetailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent deliveryStatusIntent=new Intent(AddParcelActivity.this, DeliveryDetails.class);
+                startActivity(deliveryStatusIntent);
             }
         });
     }

@@ -39,12 +39,32 @@
         <item>Up To 5 Kilogram</item>
         <item>Up To 20 Kilogram</item>
     </string-array>
+    <string-array name="parcel_status">
+        <item>Sent</item>
+        <item>Someone offered to pick her up</item>
+        <item>On the way to destination</item>
+        <item>Delivered</item>
+    </string-array>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
     <string name="x">X</string>
-    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_first_name">Enter first name :</string>
     <string name="enter_last_name">Enter last name</string>
     <string name="insert">Insert</string>
-    <string name="name_inserting">name_inserting</string>
+    <string name="name_inserting">Recipient Name</string>
+    <string name="recipient_address">Recipient address</string>
+    <string name="delivery_details">Delivery Details</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recipient_details">Recipient Details</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_the_phone_number">Enter The Phone Number</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="email_address">Email Address</string>
+    <string name="parcel_delivery_date">Parcel Delivery Date dd/mm/yyyy </string>
+    <string name="enter_delivery_date">Enter Delivery Date</string>
+    <string name="parcel_status">Parcel Status</string>
+    <string name="add">ADD</string>
 
 </resources>
