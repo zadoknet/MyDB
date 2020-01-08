@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.firebase.database.Exclude;
@@ -49,7 +48,7 @@ public class Parcel {
 
     private String name;
 
-    @Ignore
+
     private MyLocation inhibitorAddress;
 
     private MyLocation targetLocation;
@@ -61,7 +60,7 @@ public class Parcel {
     private String mail;
     public enum ParcelStatus {SENT,ACCETED_TAKING_OFFER,ON_THE_WAY,ACCEPTED;}
 
-    @Ignore
+
     private ParcelStatus status;
 
     private String messengerName;
