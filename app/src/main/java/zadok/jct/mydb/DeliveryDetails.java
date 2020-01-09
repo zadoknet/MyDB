@@ -2,13 +2,17 @@ package zadok.jct.mydb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import zadok.jct.mydb.Utils.Methods;
@@ -16,21 +20,25 @@ import zadok.jct.mydb.Utils.Methods;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-public class DeliveryDetails extends AppCompatActivity {
+import java.util.Calendar;
+
+public class DeliveryDetails extends AppCompatActivity implements View.OnClickListener {
 
     private TextInputLayout textInputFName;
     private TextInputLayout textInputLName;
     private TextInputLayout textInputEmail;
     private TextInputLayout textInputAddress;
-    private TextInputLayout textInputDate;
+    private TextView textInputDate;
     private TextInputLayout textInputPhone;
-    private boolean aBoolean;
+
+    Button btnDatePicker;
+    EditText txtDate;
+    private int mYear, mMonth, mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_details);
-
         Resources resParcelStatus = getResources();
         String[] parcelStatus = resParcelStatus.getStringArray(R.array.parcel_status);
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, parcelStatus);
@@ -51,7 +59,11 @@ public class DeliveryDetails extends AppCompatActivity {
             }
         });
 
-        /*Button AddBtn = findViewById(R.id.add_button);
+        btnDatePicker=(Button)findViewById(R.id.btn_date);
+        txtDate=(EditText)findViewById(R.id.in_date);
+        btnDatePicker.setOnClickListener(this);
+
+       /* Button AddBtn = findViewById(R.id.add_button);
         AddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,15 +71,16 @@ public class DeliveryDetails extends AppCompatActivity {
             }
         });*/
 
+        btnDatePicker=(Button)findViewById(R.id.btn_date);
 
         textInputFName = findViewById(R.id.f_name);
         textInputLName = findViewById(R.id.l_name);
         textInputEmail = findViewById(R.id.email);
         textInputAddress = findViewById(R.id.recipient_address);
-        textInputDate = findViewById(R.id.delivery_date);
-        textInputPhone = findViewById(R.id.recipient_phone);
-
+        textInputDate = findViewById(R.id.in_date);
+        textInputPhone = findViewById(R.id.phone);
     }
+
 
     private boolean validateEmail() {
         String emailInput = textInputEmail.getEditText().getText().toString().trim();
@@ -116,7 +129,7 @@ public class DeliveryDetails extends AppCompatActivity {
         }
     }
 
-    private boolean validateDate() {
+   /* public boolean validateDate() {
         String dateInput = textInputDate.getEditText().getText().toString().trim();
         if (dateInput.isEmpty()) {
             textInputDate.setError("Field can't be empty!");
@@ -128,7 +141,7 @@ public class DeliveryDetails extends AppCompatActivity {
             textInputDate.setError(null);
             return true;
         }
-    }
+    }*/
 
     private boolean validatePhoneNumber() {
         String phoneInput = textInputPhone.getEditText().getText().toString().trim();
@@ -143,20 +156,46 @@ public class DeliveryDetails extends AppCompatActivity {
     }
 
     public void confirmInput(View v) {
-        if (!validateAddress()|!validateDate()|!validateEmail()|!validateFName()|!validateLName()|!validatePhoneNumber()){
+        if (!validateAddress() |  !validateEmail() | !validateFName() | !validateLName() | !validatePhoneNumber()) {
             return;
         }
-        String input ="Recipient Name :"+" "+textInputFName.getEditText().getText().toString()+" "+textInputLName.getEditText().getText().toString();
-        input+="\n";
-        input+="Recipient address :"+" "+textInputAddress.getEditText().getText().toString();
-        input+="\n";
-        input+="Recipient phone :"+" "+textInputPhone.getEditText().getText().toString();
-        input+="\n";
-        input+="Recipient email :"+" "+textInputEmail.getEditText().getText().toString();
-        input+="\n";
-        input+="Parcel delivery date :"+" "+textInputDate.getEditText().getText().toString();
-        input+="\n";
-        input+="Parcel registration succeed !";
-        Toast.makeText(this,input,Toast.LENGTH_LONG).show();
+        String input = "Recipient Name :" + " " + textInputFName.getEditText().getText().toString() + " " + textInputLName.getEditText().getText().toString();
+        input += "\n";
+        input += "Recipient address :" + " " + textInputAddress.getEditText().getText().toString();
+        input += "\n";
+        input += "Recipient phone :" + " " + textInputPhone.getEditText().getText().toString();
+        input += "\n";
+        input += "Recipient email :" + " " + textInputEmail.getEditText().getText().toString();
+        input += "\n";
+        input += "Parcel delivery date :" + " " + textInputDate.getText().toString();
+        input += "\n";
+        input += "Parcel registration succeed !";
+        Toast.makeText(this, input, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnDatePicker) {
+
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
     }
 }

@@ -65,22 +65,21 @@
             android:inputType="textPostalAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/delivery_date"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/in_date"
+        android:layout_width="244dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="10sp"
-        app:errorEnabled="true">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/parcel_delivery_date"
-            android:inputType="text|date"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:inputType="date" />
+
+    <Button
+        android:id="@+id/btn_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_date" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/recipient_phone"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10sp"
