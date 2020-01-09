@@ -3,16 +3,9 @@ package zadok.jct.mydb.Utils;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import zadok.jct.mydb.DeliveryDetails;
+
 public class Methods {
 
-
-    public class RecipientDataCHK{
-        private TextInputLayout textInputFName;
-        private TextInputLayout textInputLName;
-        private TextInputLayout textInputEmail;
-        private TextInputLayout textInputAddress;
-
-    }
-    //TODO
 
 }

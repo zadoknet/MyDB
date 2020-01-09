@@ -62,7 +62,7 @@
     <string name="enter_the_phone_number">Enter The Phone Number</string>
     <string name="enter_email_address">Enter Email Address</string>
     <string name="email_address">Email Address</string>
-    <string name="parcel_delivery_date">Parcel Delivery Date dd/mm/yyyy </string>
+    <string name="parcel_delivery_date">Parcel Delivery Date yyyy/mm/dd or yyyy-mm-dd or yyyy.mm.dd </string>
     <string name="enter_delivery_date">Enter Delivery Date</string>
     <string name="parcel_status">Parcel Status</string>
     <string name="add">ADD</string>
