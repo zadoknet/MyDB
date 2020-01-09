@@ -18,16 +18,18 @@ public class ParcelRepository extends Application {
     HistoryDataSource database;
     private ParcelsDao parcelsDao;
     private MutableLiveData<List<Parcel>> parcelsLiveData=new MutableLiveData<>();
-    ParcelDataSource fire = new ParcelDataSource();
+    ParcelDataSource parcelDataSource = new ParcelDataSource();
 
     public ParcelRepository(Context app) {
         database = Room.databaseBuilder(app, HistoryDataSource.class, "mydb")
                 .allowMainThreadQueries()
                 .build();
         parcelsDao = database.getParcelsDao();
+       // parcelDataSource.readUniqueNum();
+
        List<Parcel> parcels = database.getParcelsDao().getItems();
         Log.i(TAG, "" + parcels);
-        fire.notifyToChildList(new ParcelDataSource.NotifyDataChange<Parcel>() {
+        parcelDataSource.notifyToChildList(new ParcelDataSource.NotifyDataChange<Parcel>() {
             @Override
             public void onDataChanged(Parcel parcel) {
 
@@ -59,11 +61,11 @@ public class ParcelRepository extends Application {
 
 
     public MutableLiveData<PostStatus> getStatusMessageRepository() {
-        return fire.getStatusMessage();
+        return parcelDataSource.getStatusMessage();
     }
 
     public void addParcelToDBManger(Parcel parcel) {
-        fire.addParcelToFirebase(parcel);
+        parcelDataSource.addParcelToFirebase(parcel);
     }
 
     public MutableLiveData<List<Parcel>> getParcelsLiveData()
@@ -74,5 +76,6 @@ public class ParcelRepository extends Application {
     public void getDataFromRoom() {
         parcelsLiveData.postValue(parcelsDao.getItems());
     }
+
 }
 

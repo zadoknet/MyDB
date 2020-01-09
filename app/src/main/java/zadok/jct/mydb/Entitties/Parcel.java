@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.google.firebase.database.Exclude;
 
 import java.text.SimpleDateFormat;

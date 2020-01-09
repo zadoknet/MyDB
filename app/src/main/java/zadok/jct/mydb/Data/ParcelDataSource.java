@@ -23,7 +23,7 @@ import zadok.jct.mydb.Utils.PostStatus;
 
 public class ParcelDataSource {
 
-    final String TAG = "ZADOK";
+    public static final String TAG = "ZADOK";
     private static ChildEventListener parcelRefChildEventListener;
 
     public static void notifyToChildList(final NotifyDataChange<Parcel> notifyDataChange) {
@@ -88,6 +88,7 @@ public class ParcelDataSource {
         void onFailure(Exception exception);
     }
 
+
     static DatabaseReference parcelsRef;
     static List<Parcel> parcelsList;
 
@@ -95,6 +96,7 @@ public class ParcelDataSource {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         parcelsRef = database.getReference("Parcels");
         parcelsList = new ArrayList<>();
+
     }
 
     public void addParcelToFirebase(final Parcel parcel) {
@@ -114,11 +116,13 @@ public class ParcelDataSource {
                 statusMessage.postValue(new PostStatus(PostStatus.savingStatus.FAILED));
             }
         });
-
     }
 
     public MutableLiveData<PostStatus> getStatusMessage() {
         return statusMessage;
     }
+
+
+
 
 }
