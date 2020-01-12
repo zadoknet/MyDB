@@ -6,27 +6,56 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import java.util.List;
 import java.util.Locale;
 
 import zadok.jct.mydb.DeliveryDetails;
+import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
+import zadok.jct.mydb.Utils.PostStatus;
+import zadok.jct.mydb.ViewModels.ParcelViewModel;
 
 public class AddParcelActivity extends AppCompatActivity {
+    private static final String TAG = "ZADOK";
 
+    //**********define the View Model******************************************
+    ParcelViewModel parcelViewModel = ViewModelProviders.of(this).get(ParcelViewModel .class);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //***************8Create the observer to AddParcel (for receive feedback)****************
+
+        parcelViewModel.getStatusMessageViewModel().observe(this, new Observer<PostStatus>() {
+            @Override
+            public void onChanged(PostStatus postStatus) {
+                if(postStatus.getStatus()==PostStatus.savingStatus.SUCCESS)
+                {
+                    Toast toast=Toast.makeText(getApplicationContext(),"saving sucess",Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.i(TAG,"saving success ViewModel");}
+                else if(postStatus.getStatus()==PostStatus.savingStatus.FAILED)
+                    Log.i(TAG,"saving failed ViewModel");
+            }
+        });
+        //******************************************************************************************
+
+        //*************create the repository ******************************************
+
         setContentView(R.layout.activity_add_parcell);
 
 
@@ -128,5 +157,9 @@ public class AddParcelActivity extends AppCompatActivity {
         }
     }
 
+    private void addParcel(Parcel parcel)
+    {
+    parcelViewModel.addParcelToRepository(parcel);
+    }
 
 }

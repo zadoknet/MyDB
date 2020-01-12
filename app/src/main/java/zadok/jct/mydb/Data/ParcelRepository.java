@@ -19,8 +19,18 @@ public class ParcelRepository extends Application {
     private ParcelsDao parcelsDao;
     private MutableLiveData<List<Parcel>> parcelsLiveData=new MutableLiveData<>();
     ParcelDataSource parcelDataSource = new ParcelDataSource();
+    //*********This is for singleton**********
+    private static ParcelRepository parcelRepository_instance=null;
+    public static ParcelRepository getInstance(Context app)
+    {
+        if (parcelRepository_instance==null)
+            parcelRepository_instance=new ParcelRepository(app);
 
-    public ParcelRepository(Context app) {
+        return parcelRepository_instance;
+    }
+
+
+    private ParcelRepository(Context app) {
         database = Room.databaseBuilder(app, HistoryDataSource.class, "mydb")
                 .allowMainThreadQueries()
                 .build();
