@@ -11,7 +11,7 @@ import zadok.jct.mydb.Data.ParcelRepository;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG="ZADOK";
-    ParcelRepository rep=new ParcelRepository(null);
+    ParcelRepository rep=ParcelRepository.getInstance(getApplication());
     //todo:
 
     @Override

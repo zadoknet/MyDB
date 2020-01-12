@@ -21,7 +21,7 @@ public class ParcelViewModel extends AndroidViewModel {
 final String TAG="ZADOK";
     public ParcelViewModel(@NonNull Application application) {
         super(application);
-        rp=new ParcelRepository(r);
+        rp=ParcelRepository.getInstance(r);
     }
 
 
