@@ -31,14 +31,15 @@ public class AddParcelActivity extends AppCompatActivity {
     private static final String TAG = "ZADOK";
 
     //**********define the View Model******************************************
-    ParcelViewModel parcelViewModel = ViewModelProviders.of(this).get(ParcelViewModel .class);
+    ParcelViewModel parcelViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //***************8Create the observer to AddParcel (for receive feedback)****************
+        //define the view model
+        parcelViewModel= ViewModelProviders.of(this).get(ParcelViewModel .class);
+        //***************Create the observer to AddParcel (for receive feedback)****************
 
         parcelViewModel.getStatusMessageViewModel().observe(this, new Observer<PostStatus>() {
             @Override

@@ -6,26 +6,19 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import java.util.List;
 import java.util.Locale;
 
-import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
 import zadok.jct.mydb.UI.WarehouseManager.HistoryParcelActivity.HistoryParcelActivity;
 import zadok.jct.mydb.UI.WarehouseManager.warehouseManager;
 import zadok.jct.mydb.Utils.MyLocation;
-import zadok.jct.mydb.Utils.PostStatus;
-import zadok.jct.mydb.ViewModels.ParcelViewModel;
 
 public class MainMenu extends AppCompatActivity {
     public static SharedPreferences sharedPref;
@@ -37,26 +30,6 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.main_menu);
         final String TAG="ZADOK";
         {sharedPref=getSharedPreferences(getPackageName()+"_preferences",MODE_PRIVATE);}
-        ParcelViewModel viewModel = ViewModelProviders.of(this).get(ParcelViewModel .class);
-        viewModel.getStatusMessageViewModel().observe(this, new Observer<PostStatus>() {
-            @Override
-            public void onChanged(PostStatus postStatus) {
-                if(postStatus.getStatus()==PostStatus.savingStatus.SUCCESS)
-                {
-                    Toast toast=Toast.makeText(getApplicationContext(),"saving sucess",Toast.LENGTH_LONG);
-                    toast.show();
-                    Log.i(TAG,"saving success ViewModel");}
-                else if(postStatus.getStatus()==PostStatus.savingStatus.FAILED)
-                    Log.i(TAG,"saving failed ViewModel");
-            }
-        });
-        MyLocation location1=getLocationFromAddress("אביעד 4 ירושלים ישראל");
-        MyLocation location2=getLocationFromAddress("נחל ניצנים בית שמש ישראל");
-        Parcel parcel=new Parcel("1","נתנאל צדוק",location1);
-        parcel.setStatus(Parcel.ParcelStatus.ACCEPTED);
-        viewModel.addParcelToRepository(parcel);
-        //viewModel.addParcelToRepository(new Parcel("2","zadok1",location2));
-        //Inhibitor address
         storeInSharedPreferenced(getLocationFromAddress("אביעד ירושלים ישראל"));
 
 
