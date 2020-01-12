@@ -28,7 +28,7 @@ public class Parcel {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    private int parcelId;
+    private String parcelId;
 
     public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE;};
 
@@ -73,11 +73,11 @@ public class Parcel {
     }
 
     @Exclude @NonNull
-    public int getParcelId() {
+    public String getParcelId() {
         return parcelId;
     }
 
-    public void setParcelId(@NonNull int parcelId) {
+    public void setParcelId(@NonNull String parcelId) {
         this.parcelId = parcelId;
     }
 
@@ -165,7 +165,7 @@ public class Parcel {
 
 
     //TODO: this constuctor is temporary for testing
-    public Parcel(int parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
+    public Parcel(String parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
         //todo: copy this to the main constructor
         Date cameToInhibitorTime=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -187,7 +187,7 @@ public class Parcel {
 
 
 
-    public Parcel(int parcelId,String _name)
+    public Parcel(String parcelId,String _name)
     {
         cameToInhibitorTime=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -197,7 +197,7 @@ public class Parcel {
         name=_name;
     }
 
-    public Parcel(int parcelId,String _name,MyLocation myLocation)
+    public Parcel(String parcelId,String _name,MyLocation myLocation)
     {
         cameToInhibitorTime=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
