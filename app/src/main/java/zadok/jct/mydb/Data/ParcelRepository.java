@@ -33,7 +33,7 @@ public class ParcelRepository extends Application {
             @Override
             public void onDataChanged(Parcel parcel) {
 
-                Parcel temp=parcelsDao.getItemById(Long.parseLong(""+parcel.getParcelId()));
+                Parcel temp=parcelsDao.getItemById(parcel.getParcelId());
                 if(temp!=null)
                     //if the item exist in the sqlite- update
                     parcelsDao.Update(parcel);
@@ -64,7 +64,7 @@ public class ParcelRepository extends Application {
         return parcelDataSource.getStatusMessage();
     }
 
-    public void addParcelToDBManger(Parcel parcel) {
+    public void addParcelParcelDataSource(Parcel parcel) {
         parcelDataSource.addParcelToFirebase(parcel);
     }
 

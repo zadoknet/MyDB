@@ -1,8 +1,10 @@
 package zadok.jct.mydb.UI;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,13 +28,15 @@ import zadok.jct.mydb.Utils.PostStatus;
 import zadok.jct.mydb.ViewModels.ParcelViewModel;
 
 public class MainMenu extends AppCompatActivity {
+    public static SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         final String TAG="ZADOK";
-
+        {sharedPref=getSharedPreferences(getPackageName()+"_preferences",MODE_PRIVATE);}
         ParcelViewModel viewModel = ViewModelProviders.of(this).get(ParcelViewModel .class);
         viewModel.getStatusMessageViewModel().observe(this, new Observer<PostStatus>() {
             @Override
@@ -48,9 +52,12 @@ public class MainMenu extends AppCompatActivity {
         });
         MyLocation location1=getLocationFromAddress("אביעד 4 ירושלים ישראל");
         MyLocation location2=getLocationFromAddress("נחל ניצנים בית שמש ישראל");
-        viewModel.addParcelToRepository(new Parcel(1,"zadok",location1));
-        viewModel.addParcelToRepository(new Parcel(2,"zadok1",location2));
-
+        Parcel parcel=new Parcel("1","נתנאל צדוק",location1);
+        parcel.setStatus(Parcel.ParcelStatus.ACCEPTED);
+        viewModel.addParcelToRepository(parcel);
+        //viewModel.addParcelToRepository(new Parcel("2","zadok1",location2));
+        //Inhibitor address
+        storeInSharedPreferenced(getLocationFromAddress("אביעד ירושלים ישראל"));
 
 
 
@@ -102,6 +109,18 @@ public class MainMenu extends AppCompatActivity {
             return new MyLocation(lat,lng);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+
+
+    private void storeInSharedPreferenced(Location inhibitorPlace)
+    {
+        {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putFloat("INHIBITOR_LAT", (float) inhibitorPlace.getLatitude());
+            editor.putFloat("INHIBITOR_LNG", (float) inhibitorPlace.getLongitude());
+            editor.commit();
         }
     }
 }

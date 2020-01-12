@@ -1,5 +1,6 @@
 package zadok.jct.mydb.Data;
 
+import android.location.Location;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zadok.jct.mydb.Entitties.Parcel;
+import zadok.jct.mydb.UI.MainMenu;
 import zadok.jct.mydb.Utils.PostStatus;
 
 
@@ -37,21 +39,57 @@ public class ParcelDataSource {
                 Parcel parcel=dataSnapshot.getValue(Parcel.class);
 
                 String id=dataSnapshot.getKey();
-                parcel.setParcelId(Integer.parseInt(id));
+                parcel.setParcelId(id);
 
                 //todo: if (filter[sent+owned to this machsan]
-                notifyDataChange.onDataChanged(parcel);
+                if (Sent_And_OwnedToInhibitor(parcel))
+                    notifyDataChange.onDataChanged(parcel);
+            }
+
+
+            private boolean Sent_And_OwnedToInhibitor(Parcel parcel) {
+                if((parcel.getStatus()== Parcel.ParcelStatus.ON_THE_WAY||parcel.getStatus()==Parcel.ParcelStatus.ACCEPTED)
+                        &&ownedToThisInhibitor(parcel))
+                    return true;
+                else
+                    return false;
+            }
+
+            private boolean ownedToThisInhibitor(Parcel parcel) {
+                //todo: defined the real location of current inhibitor
+                Location currentInhibitorPlace=fetchInhibitorPlace_FromSharedPreferences();
+
+
+                if(roundAvoid(currentInhibitorPlace.getLongitude(),2)==roundAvoid(parcel.getInhibitorAddress().getLng(),2)
+                &&roundAvoid(currentInhibitorPlace.getLatitude(),2)==roundAvoid(parcel.getInhibitorAddress().getLat(),2))
+
+                return true;
+                else
+                    return false;
+            }
+
+            private Location fetchInhibitorPlace_FromSharedPreferences() {
+                Location result=new Location("zadok");
+                result.setLatitude((double)MainMenu.sharedPref.getFloat("INHIBITOR_LAT",0));
+                result.setLongitude((double)MainMenu.sharedPref.getFloat("INHIBITOR_LNG",0));
+                return result;
+            }
+
+            public double roundAvoid(double value, int places) {
+                double scale = Math.pow(10, places);
+                return Math.round(value * scale) / scale;
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Log.i("ZADOK", "child changed");
                 Parcel parcel=dataSnapshot.getValue(Parcel.class);
-                int id=Integer.parseInt(dataSnapshot.getKey());
+                String id=dataSnapshot.getKey();
                 parcel.setParcelId(id);
 
                 //todo:  if (filter[sent+owned to this machsan]
-                notifyDataChange.onDataChanged(parcel);
+                if (Sent_And_OwnedToInhibitor(parcel))
+                    notifyDataChange.onDataChanged(parcel);
             }
 
             @Override
@@ -101,9 +139,8 @@ public class ParcelDataSource {
 
     public void addParcelToFirebase(final Parcel parcel) {
 
-        String key = "" + parcel.getParcelId();
         Log.i(TAG, "check log");
-        parcelsRef.child(key).setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
+        parcelsRef.push().setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.i(TAG, "Saving success");

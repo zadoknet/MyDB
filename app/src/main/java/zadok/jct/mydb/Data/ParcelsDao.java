@@ -21,5 +21,5 @@ public interface ParcelsDao {
     @Query("SELECT * FROM parcels_table")
     List<Parcel> getItems();
     @Query("SELECT * FROM parcels_table WHERE parcelId = :id")
-    Parcel getItemById(Long id);
+    Parcel getItemById(String id);
 }

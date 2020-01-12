@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 import com.google.firebase.database.Exclude;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +27,7 @@ public class Parcel {
 
     static int currentIdIndex;
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @NonNull
     private String parcelId;
 
@@ -57,7 +58,7 @@ public class Parcel {
     private String phoneNumber;
 
     private String mail;
-    public enum ParcelStatus {SENT,ACCETED_TAKING_OFFER,ON_THE_WAY,ACCEPTED;}
+    public enum ParcelStatus {SENT,ACCEPTED_OFFER,ON_THE_WAY,ACCEPTED;}
 
 
     private ParcelStatus status;
@@ -114,6 +115,13 @@ public class Parcel {
     }
 
     public MyLocation getInhibitorAddress() {
+        if(inhibitorAddress==null)
+        {
+            MyLocation lo=new MyLocation();
+            lo.setLongitude(0);
+            lo.setLatitude(0);
+            return lo;
+        }
         return inhibitorAddress;
     }
     public void setInhibitorAddress(MyLocation inhibitorAddress) {
@@ -203,7 +211,7 @@ public class Parcel {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Log.i(TAG,formatter.format(cameToInhibitorTime));
 
-        targetLocation=myLocation;
+        inhibitorAddress=myLocation;
         this.parcelId=parcelId;
         name=_name;
     }

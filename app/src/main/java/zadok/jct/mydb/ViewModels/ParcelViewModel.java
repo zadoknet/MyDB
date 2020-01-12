@@ -32,7 +32,7 @@ final String TAG="ZADOK";
 public void addParcelToRepository(Parcel parcel)
 {
     Log.i(TAG,"addParcel to addParcelToRepository");
-    rp.addParcelToDBManger(parcel);
+    rp.addParcelParcelDataSource(parcel);
 }
 
     //TODO:
