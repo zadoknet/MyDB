@@ -3,6 +3,7 @@ package zadok.jct.mydb;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -14,13 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import zadok.jct.mydb.Utils.Methods;
-
-
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.util.Calendar;
+
+import zadok.jct.mydb.UI.WarehouseManager.AddParcelActivity.AddParcelActivity;
 
 public class DeliveryDetails extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,12 +26,10 @@ public class DeliveryDetails extends AppCompatActivity implements View.OnClickLi
     private TextInputLayout textInputLName;
     private TextInputLayout textInputEmail;
     private TextInputLayout textInputAddress;
-    private TextView textInputDate;
     private TextInputLayout textInputPhone;
 
     Button btnDatePicker;
     EditText txtDate;
-    private int mYear, mMonth, mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +56,7 @@ public class DeliveryDetails extends AppCompatActivity implements View.OnClickLi
         });
 
         btnDatePicker=(Button)findViewById(R.id.btn_date);
-        txtDate=(EditText)findViewById(R.id.in_date);
+        txtDate=findViewById(R.id.in_date);
         btnDatePicker.setOnClickListener(this);
 
        /* Button AddBtn = findViewById(R.id.add_button);
@@ -77,10 +73,34 @@ public class DeliveryDetails extends AppCompatActivity implements View.OnClickLi
         textInputLName = findViewById(R.id.l_name);
         textInputEmail = findViewById(R.id.email);
         textInputAddress = findViewById(R.id.recipient_address);
-        textInputDate = findViewById(R.id.in_date);
         textInputPhone = findViewById(R.id.phone);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == btnDatePicker) {
+
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            int mYear = c.get(Calendar.YEAR);
+            int mMonth = c.get(Calendar.MONTH);
+            int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+    }
 
     private boolean validateEmail() {
         String emailInput = textInputEmail.getEditText().getText().toString().trim();
@@ -129,19 +149,19 @@ public class DeliveryDetails extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-   /* public boolean validateDate() {
-        String dateInput = textInputDate.getEditText().getText().toString().trim();
+   /*public boolean validateDate() {
+        String dateInput = txtDate.getText().toString().trim();
         if (dateInput.isEmpty()) {
-            textInputDate.setError("Field can't be empty!");
+            txtDate.setError("Field can't be empty!");
             return false;
         } else if (!dateInput.matches("^[0-9]{4}([- /.])(((0[13578]|(10|12))\\1(0[1-9]|[1-2][0-9]|3[0-1]))|(02\\1(0[1-9]|[1-2][0-9]))|((0[469]|11)\\1(0[1-9]|[1-2][0-9]|30)))$")) {
-            textInputDate.setError("Date is incorrect!");
+            txtDate.setError("Date is incorrect!");
             return false;
         } else {
-            textInputDate.setError(null);
+            txtDate.setError(null);
             return true;
-        }
-    }*/
+        }}*/
+
 
     private boolean validatePhoneNumber() {
         String phoneInput = textInputPhone.getEditText().getText().toString().trim();
@@ -159,6 +179,7 @@ public class DeliveryDetails extends AppCompatActivity implements View.OnClickLi
         if (!validateAddress() |  !validateEmail() | !validateFName() | !validateLName() | !validatePhoneNumber()) {
             return;
         }
+
         String input = "Recipient Name :" + " " + textInputFName.getEditText().getText().toString() + " " + textInputLName.getEditText().getText().toString();
         input += "\n";
         input += "Recipient address :" + " " + textInputAddress.getEditText().getText().toString();
@@ -167,35 +188,11 @@ public class DeliveryDetails extends AppCompatActivity implements View.OnClickLi
         input += "\n";
         input += "Recipient email :" + " " + textInputEmail.getEditText().getText().toString();
         input += "\n";
-        input += "Parcel delivery date :" + " " + textInputDate.getText().toString();
+        input += "Parcel delivery date :" + " " + txtDate.getText().toString();
         input += "\n";
         input += "Parcel registration succeed !";
         Toast.makeText(this, input, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == btnDatePicker) {
-
-            // Get Current Date
-            final Calendar c = Calendar.getInstance();
-            mYear = c.get(Calendar.YEAR);
-            mMonth = c.get(Calendar.MONTH);
-            mDay = c.get(Calendar.DAY_OF_MONTH);
-
-
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-
-                            txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
-                        }
-                    }, mYear, mMonth, mDay);
-            datePickerDialog.show();
-        }
+        Intent returnToAddParcelActivity= new Intent(DeliveryDetails.this, AddParcelActivity.class);
+        startActivity(returnToAddParcelActivity);
     }
 }

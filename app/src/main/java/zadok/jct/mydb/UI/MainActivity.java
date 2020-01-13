@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView mainMenuView = findViewById(R.id.mainMenu);
 //                mainMenuView.setTextSize((float) 25);
             }
-        }, 100);
+        }, 10);
 
 
       /*  //find buttons & set buttons clicks
