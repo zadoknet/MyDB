@@ -70,6 +70,7 @@
     <string name="carrier_name">Carrier name</string>
     <string name="no">No</string>
     <string name="select_delivery_date">Select Delivery date</string>
+    <string name="insert_delivery_date">Insert delivery date</string>
 
 
 </resources>
