@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.firebase.database.Exclude;
@@ -161,7 +162,7 @@ public class Parcel {
         this.messengerName = messengerName;
     }
 
-
+    @Ignore
     //TODO: this constuctor is temporary for testing
     public Parcel(String parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
         //todo: copy this to the main constructor

@@ -91,9 +91,11 @@ public class MainMenu extends AppCompatActivity {
     {
         {
             SharedPreferences.Editor editor = sharedPref.edit();
+            if(inhibitorPlace!=null)
+            {
             editor.putFloat("INHIBITOR_LAT", (float) inhibitorPlace.getLatitude());
             editor.putFloat("INHIBITOR_LNG", (float) inhibitorPlace.getLongitude());
-            editor.commit();
+            editor.commit();}
         }
     }
 }

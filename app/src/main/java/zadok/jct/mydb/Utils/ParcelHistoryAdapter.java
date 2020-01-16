@@ -40,7 +40,7 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
 
     @Override
     public void onBindViewHolder(@NonNull ParcelHistoryAdapter.ViewHolder myViewHolder, int position) {
-        //Get the data modelbased on position
+        //Get the data model based on position
         Parcel thisParcel = parcelList.get(position);
 
         //Set Item views
@@ -50,7 +50,9 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         String fragile;
         if (thisParcel.getFragile()) {
             fragile = "Fragile";
-        } else {fragile = "Not Fragile";}
+        } else {
+            fragile = "Not Fragile";
+        }
         textFragileView.setText(fragile);
         TextView textWeightView = myViewHolder.parcelWeightTextView;
         textWeightView.setText(thisParcel.getWeight().toString());
@@ -77,27 +79,29 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return parcelList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        TextView parcelTypeTextView;
-        TextView parcelFragileTextView;
-        TextView parcelWeightTextView;
-        TextView parcelWarehouseLocationTextView;
-        TextView parcelRecipientNameTextView;
-        TextView getParcelRecipientAddressTextView;
-        TextView parcelDeliveryDateTextView;
-        TextView parcelReceivingDateTextView;
-        TextView parcelRecipientPhoneTextView;
-        TextView getParcelRecipientEmailTextView;
-        TextView parcelStatusTextView;
-        TextView parcelCarrierNameTextView;
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView parcelTypeTextView;
+        public TextView parcelFragileTextView;
+        public TextView parcelWeightTextView;
+        public TextView parcelWarehouseLocationTextView;
+        public TextView parcelRecipientNameTextView;
+        public TextView getParcelRecipientAddressTextView;
+        public TextView parcelDeliveryDateTextView;
+        public TextView parcelReceivingDateTextView;
+        public TextView parcelRecipientPhoneTextView;
+        public TextView getParcelRecipientEmailTextView;
+        public TextView parcelStatusTextView;
+        public TextView parcelCarrierNameTextView;
 
         /**
          * @param itemView
          */
-        ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parcelTypeTextView = itemView.findViewById(R.id.parcel_type_his);
             parcelFragileTextView = itemView.findViewById(R.id.fragile_content_his);

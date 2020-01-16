@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="recipient_address" type="id" />
+    <item name="add_parcel2" type="id" />
 </resources>
