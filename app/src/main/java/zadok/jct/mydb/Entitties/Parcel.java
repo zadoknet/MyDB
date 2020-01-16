@@ -31,23 +31,14 @@ public class Parcel {
     @NonNull
     private String parcelId;
 
-    public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE;};
-
-
-
+    public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE};
     private parcelType type;
     private Boolean isFragile;
-    public enum ParcelWeight {HALF_KG,KG,FIVE_KG,TWENTY_KG;}
 
+    public enum ParcelWeight {HALF_KG,KG,FIVE_KG,TWENTY_KG}
     private ParcelWeight weight;
 
-
-
-
-
-
     private String name;
-
 
     private MyLocation inhibitorAddress;
 
@@ -58,9 +49,8 @@ public class Parcel {
     private String phoneNumber;
 
     private String mail;
-    public enum ParcelStatus {SENT,ACCEPTED_OFFER,ON_THE_WAY,ACCEPTED;}
 
-
+    public enum ParcelStatus {SENT,ACCEPTED_OFFER,ON_THE_WAY,ACCEPTED}
     private ParcelStatus status;
 
     private String messengerName;
