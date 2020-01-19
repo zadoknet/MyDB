@@ -22,6 +22,7 @@ public class HistoryViewModel extends AndroidViewModel {
     public HistoryViewModel(@NonNull Application application) {
         super(application);
         rp=ParcelRepository.getInstance(application);
+
     }
     public MutableLiveData<List<Parcel>> getParcelsLiveDate()
     {

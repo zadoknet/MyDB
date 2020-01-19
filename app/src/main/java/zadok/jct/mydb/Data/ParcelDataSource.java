@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -29,7 +30,7 @@ public class ParcelDataSource {
     private static ChildEventListener parcelRefChildEventListener;
 
     public static void notifyToChildList(final NotifyDataChange<Parcel> notifyDataChange) {
-        if (notifyDataChange != null)
+        if (parcelRefChildEventListener != null)
             notifyDataChange.onFailure(new Exception("first unNotify parcel list"));
         parcelsList.clear();
         parcelRefChildEventListener = new ChildEventListener() {
@@ -149,6 +150,12 @@ public class ParcelDataSource {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Log.i(TAG, "Saving failed");
+                statusMessage.postValue(new PostStatus(PostStatus.savingStatus.FAILED));
+            }
+        }).addOnCanceledListener(new OnCanceledListener() {
+            @Override
+            public void onCanceled() {
                 Log.i(TAG, "Saving failed");
                 statusMessage.postValue(new PostStatus(PostStatus.savingStatus.FAILED));
             }

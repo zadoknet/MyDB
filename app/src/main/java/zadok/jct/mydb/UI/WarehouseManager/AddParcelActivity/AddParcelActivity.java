@@ -7,7 +7,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,12 +14,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Calendar;
@@ -30,7 +27,6 @@ import java.util.Locale;
 import zadok.jct.mydb.DeliveryDetails;
 import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
-import zadok.jct.mydb.Utils.MyLocation;
 import zadok.jct.mydb.Utils.PostStatus;
 import zadok.jct.mydb.ViewModels.ParcelViewModel;
 
@@ -51,11 +47,11 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
             public void onChanged(PostStatus postStatus) {
                 if(postStatus.getStatus()==PostStatus.savingStatus.SUCCESS)
                 {
-                    Toast toast=Toast.makeText(getApplicationContext(),"saving sucess",Toast.LENGTH_LONG);
-                    toast.show();}
+                    Toast.makeText(getApplicationContext(),"saving success",Toast.LENGTH_LONG).show();
+                    }
                 else if(postStatus.getStatus()==PostStatus.savingStatus.FAILED)
-                {Toast toast=Toast.makeText(getApplicationContext(),"saving failed",Toast.LENGTH_LONG);
-                    toast.show();}
+                {Toast.makeText(getApplicationContext(),"saving failed",Toast.LENGTH_LONG).show();
+                    }
             }
         });
         Resources resParcelType=getResources();
