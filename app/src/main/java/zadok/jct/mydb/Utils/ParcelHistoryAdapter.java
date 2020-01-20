@@ -17,8 +17,8 @@ import zadok.jct.mydb.R;
 public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdapter.ViewHolder> {
 
     ViewHolder myViewHolder;
+    Parcel pa=new Parcel();
     private List<Parcel> parcelList;
-
     public ParcelHistoryAdapter(List<Parcel> ParcelList) {
         parcelList = ParcelList;
     }
@@ -62,7 +62,7 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         textRNameView.setText(thisParcel.getName());
         TextView textRAddressView = myViewHolder.getParcelRecipientAddressTextView;
         textRAddressView.setText(thisParcel.getInhibitorAddress().toString());
-        TextView textDDateView = myViewHolder.parcelDeliveryDateTextView;
+        //TextView textDDateView = myViewHolder.parcelDeliveryDateTextView;
         //textDDateView.setText(thisParcel.get);
         TextView textRDateView = myViewHolder.parcelReceivingDateTextView;
         textRDateView.setText(thisParcel.getCameToInhibitorTime().toString());

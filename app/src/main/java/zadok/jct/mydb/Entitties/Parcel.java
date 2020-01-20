@@ -32,7 +32,7 @@ public class Parcel {
     @NonNull
     private String parcelId;
 
-    public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE};
+    public enum parcelType {ENVELOPE,SMALL_PACKAGE,BIG_PACKAGE}
     private parcelType type;
     private Boolean isFragile;
 
