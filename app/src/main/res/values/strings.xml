@@ -30,8 +30,8 @@
         <item>Large Package</item>
     </string-array>
     <string-array name="fragileContentArr">
-        <item>Yes</item>
         <item>No</item>
+        <item>Yes</item>
     </string-array>
     <string-array name="weight">
         <item>Up To 500 Gram</item>

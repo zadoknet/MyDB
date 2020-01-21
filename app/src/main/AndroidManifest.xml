@@ -13,13 +13,16 @@
         <activity android:name=".UI.WarehouseManager.AddParcelActivity.AddParcelActivity" />
         <activity android:name=".UI.ShippingOrder" />
         <activity android:name=".UI.MainMenu" />
-        <activity android:name=".UI.WarehouseManager.warehouseManager" />
-        <activity android:name=".UI.MainActivity">
+        <activity android:name=".UI.WarehouseManager.warehouseManager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".UI.MainActivity">
+
         </activity>
     </application>
 

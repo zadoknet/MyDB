@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zadok.jct.mydb.Entitties.Parcel;
-import zadok.jct.mydb.UI.MainMenu;
+import zadok.jct.mydb.UI.WarehouseManager.warehouseManager;
 import zadok.jct.mydb.Utils.PostStatus;
 
 
@@ -71,8 +71,8 @@ public class ParcelDataSource {
 
             private Location fetchInhibitorPlace_FromSharedPreferences() {
                 Location result=new Location("zadok");
-                result.setLatitude((double)MainMenu.sharedPref.getFloat("INHIBITOR_LAT",0));
-                result.setLongitude((double)MainMenu.sharedPref.getFloat("INHIBITOR_LNG",0));
+                result.setLatitude((double) warehouseManager.getSharedPref().getFloat("INHIBITOR_LAT",0));
+                result.setLongitude((double)warehouseManager.getSharedPref().getFloat("INHIBITOR_LNG",0));
                 return result;
             }
 

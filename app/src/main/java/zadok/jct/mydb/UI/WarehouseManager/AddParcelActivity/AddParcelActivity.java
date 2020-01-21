@@ -1,13 +1,10 @@
 package zadok.jct.mydb.UI.WarehouseManager.AddParcelActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,26 +12,31 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import zadok.jct.mydb.DeliveryDetails;
 import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
+import zadok.jct.mydb.UI.WarehouseManager.warehouseManager;
 import zadok.jct.mydb.Utils.MyLocation;
 import zadok.jct.mydb.Utils.PostStatus;
 import zadok.jct.mydb.ViewModels.ParcelViewModel;
 
+//import zadok.jct.mydb.DeliveryDetails;
+
 public class AddParcelActivity extends AppCompatActivity implements View.OnClickListener{
+    Parcel.parcelType parcelTypeSelection;
+    boolean isFragileSelection;
+    Parcel.parcelWeight weightSelection;
+
 
     Button btnDatePicker;
     EditText txtDate;
@@ -69,11 +71,22 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch (position){
+                case 0:
+                    parcelTypeSelection =Parcel.parcelType.ENVELOPE;
+                break;
+                case 1:
+                    parcelTypeSelection =Parcel.parcelType.SMALL_PACKAGE;
+                break;
+                case 2:
+                    parcelTypeSelection =Parcel.parcelType.BIG_PACKAGE;
+            }
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                parcelTypeSelection = Parcel.parcelType.ENVELOPE;
 
             }
         });
@@ -93,12 +106,18 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
         isFragile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                    switch (position){
+                        case 0:
+                            isFragileSelection =false;
+                            break;
+                        case 1:
+                            isFragileSelection =true;
+                    }
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-
+                    isFragileSelection=false;
                 }
         });
 
@@ -113,19 +132,30 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
         setWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                switch (position){
+                    case 0:
+                        weightSelection= Parcel.parcelWeight.HALF_KG;
+                        break;
+                    case 1:
+                        weightSelection= Parcel.parcelWeight.KG;
+                        break;
+                    case 2:
+                        weightSelection= Parcel.parcelWeight.FIVE_KG;
+                    case 3:
+                        weightSelection= Parcel.parcelWeight.TWENTY_KG;
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                weightSelection= Parcel.parcelWeight.HALF_KG;
             }
         });
 
         /**
          *
          */
-        Button DeliveryDetailsBtn=findViewById(R.id.delivery_details);
+/*        Button DeliveryDetailsBtn=findViewById(R.id.delivery_details);
         DeliveryDetailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,16 +163,36 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
                 startActivity(deliveryStatusIntent);
             }
         });
-
+*/
         Button AddParcelBtn=findViewById(R.id.add_parcel2);
         AddParcelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TextView FNameText=findViewById(R.id.f_name);
                 //TextView LNameText=findViewById(R.id.l_name);
+
                 Parcel parcel=new Parcel();
-                parcel.setName("meerzon shelmo");
-                parcel.setStatus(Parcel.ParcelStatus.ACCEPTED);
+                parcel.setName(((EditText)findViewById(R.id.f_name)).getText().toString()+" "+((EditText)findViewById(R.id.l_name)).getText().toString());
+
+                String targetLocationText=((EditText)findViewById(R.id.recipient_address)).getText().toString();
+                parcel.setTargetLocation(getLocationFromAddress(targetLocationText));
+                //todo: date
+                String phoneNumber=((EditText)findViewById(R.id.phone)).getText().toString();
+                parcel.setPhoneNumber(phoneNumber);
+
+                String mail=((EditText)findViewById(R.id.email)).getText().toString();
+                parcel.setMail(mail);
+
+                parcel.setType(parcelTypeSelection);
+
+                parcel.setWeight(weightSelection);
+
+                parcel.setFragile(isFragileSelection);
+
+
+                parcel.setStatus(Parcel.ParcelStatus.SENT);
+                parcel.setCameToInhibitorTime(new Date());
+                parcel.setInhibitorAddress(fetchInhibitorPlace_FromSharedPreferences());
                 viewModel.addParcelToRepository(parcel);
 
             }
@@ -175,7 +225,7 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
     }
 
 
-    public Location getLocationFromAddress(String strAddress) {
+    public MyLocation getLocationFromAddress(String strAddress) {
 
         //    Geocoder coder = new Geocoder(this);
         Geocoder coder = new Geocoder(this,  new Locale("he"));
@@ -189,12 +239,19 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
             Address location = address.get(0);
             double lat = location.getLatitude();
             double lng = location.getLongitude();
-            Location result=new Location("zadok");
+            MyLocation result=new MyLocation();
             result.setLatitude(lat);
             result.setLongitude(lng);
             return result;
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private MyLocation fetchInhibitorPlace_FromSharedPreferences() {
+        MyLocation result=new MyLocation();
+        result.setLatitude((double) warehouseManager.getSharedPref().getFloat("INHIBITOR_LAT",0));
+        result.setLongitude((double)warehouseManager.getSharedPref().getFloat("INHIBITOR_LNG",0));
+        return result;
     }
 }

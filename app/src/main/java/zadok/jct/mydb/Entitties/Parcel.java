@@ -36,8 +36,8 @@ public class Parcel {
     private parcelType type;
     private Boolean isFragile;
 
-    public enum ParcelWeight {HALF_KG,KG,FIVE_KG,TWENTY_KG}
-    private ParcelWeight weight;
+    public enum parcelWeight {HALF_KG,KG,FIVE_KG,TWENTY_KG}
+    private parcelWeight weight;
 
     private String name;
 
@@ -89,11 +89,11 @@ public class Parcel {
         isFragile = fragile;
     }
 
-    public ParcelWeight getWeight() {
+    public parcelWeight getWeight() {
         return weight;
     }
 
-    public void setWeight(ParcelWeight weight) {
+    public void setWeight(parcelWeight weight) {
         this.weight = weight;
     }
 
@@ -164,7 +164,7 @@ public class Parcel {
 
     @Ignore
     //TODO: this constuctor is temporary for testing
-    public Parcel(String parcelId, parcelType type, Boolean isFragile, ParcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
+    public Parcel(String parcelId, parcelType type, Boolean isFragile, parcelWeight weight, String name, String phoneNumber, String mail, ParcelStatus status, String messengerName) {
         //todo: copy this to the main constructor
         Date cameToInhibitorTime=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

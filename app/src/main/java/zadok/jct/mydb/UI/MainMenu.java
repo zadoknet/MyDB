@@ -29,8 +29,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         final String TAG="ZADOK";
-        {sharedPref=getSharedPreferences(getPackageName()+"_preferences",MODE_PRIVATE);}
-        storeInSharedPreferenced(getLocationFromAddress("אביעד ירושלים ישראל"));
+
 
 
 

@@ -44,18 +44,18 @@ public class RoomConverter {
 
     //*******for parcelWeight enum*****************************************************
     @TypeConverter
-    public static String fromParcelWeight(Parcel.ParcelWeight parcelWeight)
+    public static String fromParcelWeight(Parcel.parcelWeight parcelWeight)
     {
         if(parcelWeight==null)
             return "";
         return parcelWeight.name();
     }
     @TypeConverter
-    public static Parcel.ParcelWeight toParcelWeight(String parcelWeight)
+    public static Parcel.parcelWeight toParcelWeight(String parcelWeight)
     {
      if(parcelWeight.length()==0)
          return null;
-        return Parcel.ParcelWeight.valueOf(parcelWeight);
+        return Parcel.parcelWeight.valueOf(parcelWeight);
     }
 
     //******for Date*******************************************************************
