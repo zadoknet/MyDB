@@ -1,11 +1,9 @@
 package zadok.jct.mydb.UI.WarehouseManager.HistoryParcelActivity;
 
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -25,6 +23,9 @@ import zadok.jct.mydb.ViewModels.HistoryViewModel;
 
 public class HistoryParcelActivity extends AppCompatActivity {
     final String TAG = "ZADOK";
+    private RecyclerView rvParcelHistory;
+    private RecyclerView.Adapter myAdapter;
+    private RecyclerView.LayoutManager myLayoutManager;
     HistoryViewModel historyViewModel;
     public ArrayList<Parcel> myParcel;
     @Override
@@ -33,15 +34,12 @@ public class HistoryParcelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history_parcel);
 
         //Lookup the recyclerview in activity layout
-        RecyclerView rvParcelHistory=findViewById(R.id.rvParcelHistory);
-
-
+        rvParcelHistory=findViewById(R.id.rvParcelHistory);
 
        // historyViewModel.getDataFromRoom();
         //Initialize parcel list
 
         historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
-
         historyViewModel.getParcelsLiveDate().observe(this, new Observer<List<Parcel>>() {
             @Override
             public void onChanged(List<Parcel> parcels) {
@@ -51,13 +49,22 @@ public class HistoryParcelActivity extends AppCompatActivity {
                 Log.i(TAG,""+getCompleteAddress(parcels.get(0).getInhibitorAddress().getLat(),parcels.get(0).getInhibitorAddress().getLng()));
             }
         });
-        ParcelHistoryAdapter myAdapter=new ParcelHistoryAdapter((myParcel));
+
+        myLayoutManager=new LinearLayoutManager(this);
+        rvParcelHistory.setLayoutManager(myLayoutManager);
+
+        //
+        myAdapter=new ParcelHistoryAdapter((myParcel));
         rvParcelHistory.setAdapter(myAdapter);
-        rvParcelHistory.setLayoutManager(new LinearLayoutManager(this));
+
+        //the size of view is static
+        rvParcelHistory.setHasFixedSize(true);
+
+
         Log.i(TAG,"pass good");
 
     }
-//************This function translte from lat/lng location to literal address**********************
+//************This function translate from lat/lng location to literal address**********************
     public String getCompleteAddress(double latitude, double longitude) {
         String location = "";
         try {

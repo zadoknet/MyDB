@@ -53,7 +53,7 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
             public void onChanged(PostStatus postStatus) {
                 if(postStatus.getStatus()==PostStatus.savingStatus.SUCCESS)
                 {
-                    Toast toast=Toast.makeText(getApplicationContext(),"saving sucess",Toast.LENGTH_LONG);
+                    Toast toast=Toast.makeText(getApplicationContext(),"saving success",Toast.LENGTH_LONG);
                     toast.show();}
                 else if(postStatus.getStatus()==PostStatus.savingStatus.FAILED)
                 {Toast toast=Toast.makeText(getApplicationContext(),"saving failed",Toast.LENGTH_LONG);
@@ -152,18 +152,7 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-        /**
-         *
-         */
-/*        Button DeliveryDetailsBtn=findViewById(R.id.delivery_details);
-        DeliveryDetailsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent deliveryStatusIntent=new Intent(AddParcelActivity.this, DeliveryDetails.class);
-                startActivity(deliveryStatusIntent);
-            }
-        });
-*/
+
         Button AddParcelBtn=findViewById(R.id.add_parcel2);
         AddParcelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,6 +187,11 @@ public class AddParcelActivity extends AppCompatActivity implements View.OnClick
             }
         });
     }
+
+    /**
+     * date of delivery Calendar II
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if (v == btnDatePicker) {

@@ -69,21 +69,6 @@
                 android:inputType="textPostalAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/in_date"
-            android:layout_width="244dp"
-            android:layout_height="wrap_content"
-            android:padding="20sp"
-            android:hint="@string/parcel_delivery_date"
-            android:inputType="date" />
-
-        <Button
-            android:id="@+id/btn_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20sp"
-            android:text="@string/select_date" />
-
         <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
@@ -252,7 +237,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/delivery_details"
             app:layout_constraintVertical_bias="0.509" />
 
         <Spinner
@@ -273,6 +257,7 @@
             android:layout_height="wrap_content"
             android:padding="20sp"
             android:text="@string/add_parcel"
+            android:onClick="confirmInput"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView"
             app:layout_constraintVertical_bias="0.846"

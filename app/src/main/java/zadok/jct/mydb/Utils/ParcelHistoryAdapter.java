@@ -16,22 +16,61 @@ import zadok.jct.mydb.R;
 
 public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdapter.ViewHolder> {
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView parcelTextView;
+        /*public TextView parcelFragileTextView;
+        public TextView parcelWeightTextView;
+        public TextView parcelWarehouseLocationTextView;
+        public TextView parcelRecipientNameTextView;
+        public TextView getParcelRecipientAddressTextView;
+        public TextView parcelDeliveryDateTextView;
+        public TextView parcelReceivingDateTextView;
+        public TextView parcelRecipientPhoneTextView;
+        public TextView getParcelRecipientEmailTextView;
+        public TextView parcelStatusTextView;
+        public TextView parcelCarrierNameTextView;*/
+        /**
+         * @param itemView
+         */
+        public ViewHolder(@NonNull TextView itemView) {
+            super(itemView);
+            parcelTextView = itemView;
+            /*
+            parcelFragileTextView = itemView.findViewById(R.id.fragile_content_his);
+            parcelWeightTextView = itemView.findViewById(R.id.parcel_wheight_his);
+            parcelWarehouseLocationTextView = itemView.findViewById(R.id.parcel_warehouse_location_his);
+            parcelRecipientNameTextView = itemView.findViewById(R.id.parcel_recipient_name_his);
+            getParcelRecipientAddressTextView = itemView.findViewById(R.id.parcel_recipient_address_his);
+            parcelDeliveryDateTextView = itemView.findViewById(R.id.delivery_date_his);
+            parcelReceivingDateTextView = itemView.findViewById(R.id.parcel_delivery_date_his);
+            parcelRecipientPhoneTextView = itemView.findViewById(R.id.recipient_phone_his);
+            getParcelRecipientEmailTextView = itemView.findViewById(R.id.recipient_email_his);
+            parcelStatusTextView = itemView.findViewById(R.id.parcel_status_his);
+            parcelCarrierNameTextView = itemView.findViewById(R.id.parcel_carrier_name_his);*/
+        }
+    }
+
+    private List<String> parcelList;
+
     ViewHolder myViewHolder;
-    Parcel pa=new Parcel();
-    private List<Parcel> parcelList;
-    public ParcelHistoryAdapter(List<Parcel> ParcelList) {
+    //Parcel pa=new Parcel();
+
+    public ParcelHistoryAdapter(List<String> ParcelList) {
+
         parcelList = ParcelList;
     }
 
     @NonNull
     @Override
     public ParcelHistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context myContext = parent.getContext();
+        /*Context myContext = parent.getContext();
         LayoutInflater myInflater = LayoutInflater.from(myContext);
 
         //Inflate the custom layout
         View parcelRowView = myInflater.inflate(R.layout.recycler_view_row, parent, false);
+        */
 
+        TextView parcelRowView=(TextView)LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_row,parent,false) ;
 
         //Return a new holder instance
         myViewHolder = new ViewHolder(parcelRowView);
@@ -44,9 +83,9 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         Parcel thisParcel = parcelList.get(position);
 
         //Set Item views
-        TextView textTypeView = myViewHolder.parcelTypeTextView;
+        TextView textTypeView = myViewHolder.parcelTextView;
         textTypeView.setText(thisParcel.getType().toString());
-        TextView textFragileView = myViewHolder.parcelFragileTextView;
+        /*TextView textFragileView = myViewHolder.parcelFragileTextView;
         String fragile;
         if (thisParcel.getFragile()) {
             fragile = "Fragile";
@@ -73,7 +112,7 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         TextView textStatusView = myViewHolder.parcelStatusTextView;
         textStatusView.setText(thisParcel.getStatus().toString());
         TextView textCNameView = myViewHolder.parcelCarrierNameTextView;
-        textCNameView.setText(thisParcel.getMessengerName());
+        textCNameView.setText(thisParcel.getMessengerName());*/
     }
 
 
@@ -84,39 +123,5 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView parcelTypeTextView;
-        public TextView parcelFragileTextView;
-        public TextView parcelWeightTextView;
-        public TextView parcelWarehouseLocationTextView;
-        public TextView parcelRecipientNameTextView;
-        public TextView getParcelRecipientAddressTextView;
-        public TextView parcelDeliveryDateTextView;
-        public TextView parcelReceivingDateTextView;
-        public TextView parcelRecipientPhoneTextView;
-        public TextView getParcelRecipientEmailTextView;
-        public TextView parcelStatusTextView;
-        public TextView parcelCarrierNameTextView;
 
-        /**
-         * @param itemView
-         */
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            parcelTypeTextView = itemView.findViewById(R.id.parcel_type_his);
-            parcelFragileTextView = itemView.findViewById(R.id.fragile_content_his);
-            parcelWeightTextView = itemView.findViewById(R.id.parcel_wheight_his);
-            parcelWarehouseLocationTextView = itemView.findViewById(R.id.parcel_warehouse_location_his);
-            parcelRecipientNameTextView = itemView.findViewById(R.id.parcel_recipient_name_his);
-            getParcelRecipientAddressTextView = itemView.findViewById(R.id.parcel_recipient_address_his);
-            parcelDeliveryDateTextView = itemView.findViewById(R.id.delivery_date_his);
-            parcelReceivingDateTextView = itemView.findViewById(R.id.parcel_delivery_date_his);
-            parcelRecipientPhoneTextView = itemView.findViewById(R.id.recipient_phone_his);
-            getParcelRecipientEmailTextView = itemView.findViewById(R.id.recipient_email_his);
-            parcelStatusTextView = itemView.findViewById(R.id.parcel_status_his);
-            parcelCarrierNameTextView = itemView.findViewById(R.id.parcel_carrier_name_his);
-
-
-        }
-    }
 }
