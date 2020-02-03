@@ -1,31 +1,28 @@
 package zadok.jct.mydb.Utils;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
-import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
 
 public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView parcelTextView;
-        /*public TextView parcelFragileTextView;
+
+        public TextView parcelRecipientNameTextView;
+        public TextView parcelDeliveryDateTextView;
+        public TextView parcelRecipientPhoneTextView;
+        public TextView ParcelRecipientAddressTextView;
+        public TextView ParcelId;
+        /*
+        public TextView parcelTypeTextView;
+        public TextView parcelFragileTextView;
         public TextView parcelWeightTextView;
         public TextView parcelWarehouseLocationTextView;
-        public TextView parcelRecipientNameTextView;
-        public TextView getParcelRecipientAddressTextView;
-        public TextView parcelDeliveryDateTextView;
         public TextView parcelReceivingDateTextView;
-        public TextView parcelRecipientPhoneTextView;
         public TextView getParcelRecipientEmailTextView;
         public TextView parcelStatusTextView;
         public TextView parcelCarrierNameTextView;*/
@@ -34,16 +31,16 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
          */
         public ViewHolder(@NonNull TextView itemView) {
             super(itemView);
-            parcelTextView = itemView;
-            /*
+
+            parcelRecipientNameTextView = itemView.findViewById(R.id.parcel_recipient_name_his);
+            ParcelRecipientAddressTextView = itemView.findViewById(R.id.parcel_recipient_address_his);
+            parcelDeliveryDateTextView = itemView.findViewById(R.id.delivery_date_his);
+            parcelRecipientPhoneTextView = itemView.findViewById(R.id.recipient_phone_his);
+            /*parcelTypeTextView = itemView;
             parcelFragileTextView = itemView.findViewById(R.id.fragile_content_his);
             parcelWeightTextView = itemView.findViewById(R.id.parcel_wheight_his);
             parcelWarehouseLocationTextView = itemView.findViewById(R.id.parcel_warehouse_location_his);
-            parcelRecipientNameTextView = itemView.findViewById(R.id.parcel_recipient_name_his);
-            getParcelRecipientAddressTextView = itemView.findViewById(R.id.parcel_recipient_address_his);
-            parcelDeliveryDateTextView = itemView.findViewById(R.id.delivery_date_his);
             parcelReceivingDateTextView = itemView.findViewById(R.id.parcel_delivery_date_his);
-            parcelRecipientPhoneTextView = itemView.findViewById(R.id.recipient_phone_his);
             getParcelRecipientEmailTextView = itemView.findViewById(R.id.recipient_email_his);
             parcelStatusTextView = itemView.findViewById(R.id.parcel_status_his);
             parcelCarrierNameTextView = itemView.findViewById(R.id.parcel_carrier_name_his);*/
@@ -70,7 +67,8 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         View parcelRowView = myInflater.inflate(R.layout.recycler_view_row, parent, false);
         */
 
-        TextView parcelRowView=(TextView)LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_row,parent,false) ;
+        TextView parcelRowView=(TextView)LayoutInflater.
+                from(parent.getContext()).inflate(R.layout.recycler_view_row,parent,false) ;
 
         //Return a new holder instance
         myViewHolder = new ViewHolder(parcelRowView);
@@ -80,11 +78,11 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
     @Override
     public void onBindViewHolder(@NonNull ParcelHistoryAdapter.ViewHolder myViewHolder, int position) {
         //Get the data model based on position
-        Parcel thisParcel = parcelList.get(position);
+        String thisParcel = parcelList.get(position);
 
         //Set Item views
-        TextView textTypeView = myViewHolder.parcelTextView;
-        textTypeView.setText(thisParcel.getType().toString());
+        TextView textTypeView = myViewHolder.ParcelId;
+        textTypeView.setText(thisParcel);
         /*TextView textFragileView = myViewHolder.parcelFragileTextView;
         String fragile;
         if (thisParcel.getFragile()) {

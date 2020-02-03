@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,7 +28,7 @@ public class HistoryParcelActivity extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager myLayoutManager;
     HistoryViewModel historyViewModel;
-    public ArrayList<Parcel> myParcel;
+    public ArrayList<String> myParcel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class HistoryParcelActivity extends AppCompatActivity {
         historyViewModel.getParcelsLiveDate().observe(this, new Observer<List<Parcel>>() {
             @Override
             public void onChanged(List<Parcel> parcels) {
-                myParcel.addAll(parcels);
+                myParcel.addAll(Collections.singleton(parcels.toString()));
                 //historyViewModel.getDataFromRoom();
                 Log.i(TAG, "This is parcel from the room" + parcels.toString());
                 Log.i(TAG,""+getCompleteAddress(parcels.get(0).getInhibitorAddress().getLat(),parcels.get(0).getInhibitorAddress().getLng()));

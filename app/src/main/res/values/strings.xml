@@ -71,6 +71,11 @@
     <string name="no">No</string>
     <string name="select_delivery_date">Select Delivery date</string>
     <string name="insert_delivery_date">Insert delivery date</string>
+    <string name="button1">Button</string>
+    <string name="button2">Button2</string>
+    <string name="parcel_id">Parcel ID</string>
+    <string name="recipient_name">Recipient Name</string>
+
 
 
 </resources>
