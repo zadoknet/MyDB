@@ -5,21 +5,19 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-
 import zadok.jct.mydb.Entitties.Parcel;
 import zadok.jct.mydb.R;
 import zadok.jct.mydb.Utils.ParcelHistoryAdapter;
+import zadok.jct.mydb.Utils.ParcelToString;
 import zadok.jct.mydb.ViewModels.HistoryViewModel;
 
 public class HistoryParcelActivity extends AppCompatActivity {
@@ -28,7 +26,7 @@ public class HistoryParcelActivity extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager myLayoutManager;
     HistoryViewModel historyViewModel;
-    public ArrayList<String> myParcel;
+    public List<String[]> myParcel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +42,10 @@ public class HistoryParcelActivity extends AppCompatActivity {
         historyViewModel.getParcelsLiveDate().observe(this, new Observer<List<Parcel>>() {
             @Override
             public void onChanged(List<Parcel> parcels) {
-                myParcel.addAll(Collections.singleton(parcels.toString()));
+                myParcel.addAll(new ParcelToString(parcels).);
                 //historyViewModel.getDataFromRoom();
                 Log.i(TAG, "This is parcel from the room" + parcels.toString());
-                Log.i(TAG,""+getCompleteAddress(parcels.get(0).getInhibitorAddress().getLat(),parcels.get(0).getInhibitorAddress().getLng()));
+               //Log.i(TAG,""+getCompleteAddress(parcels.get(0).getInhibitorAddress().getLat(),parcels.get(0).getInhibitorAddress().getLng()));
             }
         });
 
@@ -65,12 +63,13 @@ public class HistoryParcelActivity extends AppCompatActivity {
         Log.i(TAG,"pass good");
 
     }
-//************This function translate from lat/lng location to literal address**********************
+    //************This function translate from lat/lng location to literal address**********************
     public String getCompleteAddress(double latitude, double longitude) {
         String location = "";
         try {
             //  Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            Geocoder geocoder = new Geocoder(this,  new Locale("he"));
+            Geocoder geocoder;
+            geocoder = new Geocoder(this,  new Locale("he"));
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) {
                 Address address = addresses.get(0);

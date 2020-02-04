@@ -12,11 +12,10 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView parcelIdTextView;
         public TextView parcelRecipientNameTextView;
-        public TextView parcelDeliveryDateTextView;
         public TextView parcelRecipientPhoneTextView;
         public TextView ParcelRecipientAddressTextView;
-        public TextView ParcelId;
         /*
         public TextView parcelTypeTextView;
         public TextView parcelFragileTextView;
@@ -26,15 +25,18 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         public TextView getParcelRecipientEmailTextView;
         public TextView parcelStatusTextView;
         public TextView parcelCarrierNameTextView;*/
+
+
+
         /**
          * @param itemView
          */
         public ViewHolder(@NonNull TextView itemView) {
             super(itemView);
 
-            parcelRecipientNameTextView = itemView.findViewById(R.id.parcel_recipient_name_his);
-            ParcelRecipientAddressTextView = itemView.findViewById(R.id.parcel_recipient_address_his);
-            parcelDeliveryDateTextView = itemView.findViewById(R.id.delivery_date_his);
+            parcelRecipientNameTextView = itemView.findViewById(R.id.recipient_name_his);
+            ParcelRecipientAddressTextView = itemView.findViewById(R.id.recipient_address_his);
+            parcelIdTextView = itemView.findViewById(R.id.parcel_Id_his);
             parcelRecipientPhoneTextView = itemView.findViewById(R.id.recipient_phone_his);
             /*parcelTypeTextView = itemView;
             parcelFragileTextView = itemView.findViewById(R.id.fragile_content_his);
@@ -47,12 +49,9 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
         }
     }
 
-    private List<String> parcelList;
+    private List<String[]> parcelList;
 
-    ViewHolder myViewHolder;
-    //Parcel pa=new Parcel();
-
-    public ParcelHistoryAdapter(List<String> ParcelList) {
+    public ParcelHistoryAdapter(List<String[]> ParcelList) {
 
         parcelList = ParcelList;
     }
@@ -71,18 +70,21 @@ public class ParcelHistoryAdapter extends RecyclerView.Adapter<ParcelHistoryAdap
                 from(parent.getContext()).inflate(R.layout.recycler_view_row,parent,false) ;
 
         //Return a new holder instance
-        myViewHolder = new ViewHolder(parcelRowView);
+        ViewHolder myViewHolder = new ViewHolder(parcelRowView);
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ParcelHistoryAdapter.ViewHolder myViewHolder, int position) {
         //Get the data model based on position
-        String thisParcel = parcelList.get(position);
+        String[] thisParcel = parcelList.get(position);
 
         //Set Item views
-        TextView textTypeView = myViewHolder.ParcelId;
-        textTypeView.setText(thisParcel);
+        myViewHolder.parcelIdTextView.setText(thisParcel[0]);
+        myViewHolder.parcelRecipientNameTextView.setText(thisParcel[1]);
+        myViewHolder.ParcelRecipientAddressTextView.setText(thisParcel[2]);
+        myViewHolder.parcelRecipientPhoneTextView.setText(thisParcel[3]);
+
         /*TextView textFragileView = myViewHolder.parcelFragileTextView;
         String fragile;
         if (thisParcel.getFragile()) {
